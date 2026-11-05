@@ -11,11 +11,19 @@
 </head>
 <body>
     <header class="dp-flex ai-center">
-        <div class="brandmark">
+        <div class="brandmark dp-flex ai-center">
+            <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" aria-hidden="true">
+                <path d="M112 400 V248 a144 144 0 0 1 288 0 V400 Z" fill="none" stroke="currentColor" stroke-width="28" stroke-linejoin="round"/>
+                <rect x="160" y="280" width="192" height="120" fill="none" stroke="currentColor" stroke-width="20"/>
+                <line x1="160" y1="320" x2="352" y2="320" stroke="currentColor" stroke-width="14" stroke-linecap="round"/>
+                <line x1="160" y1="360" x2="352" y2="360" stroke="currentColor" stroke-width="14" stroke-linecap="round"/>
+                <circle cx="176" cy="208" r="12" fill="currentColor"/>
+                <circle cx="336" cy="208" r="12" fill="currentColor"/>
+            </svg>
             <h1>Dashboard</h1>
         </div>
         <nav class="dp-flex ai-center">
-            <a href="tasks" class="dp-flex ai-center jc-center">
+            <a href="tasks.html" class="dp-flex ai-center jc-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -24,7 +32,7 @@
                 </svg>
                 Tasks
             </a>
-            <a href="terminal" class="dp-flex ai-center jc-center">
+            <a href="terminal.html" class="dp-flex ai-center jc-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -49,6 +57,9 @@
     </header>
     <main>
         <article>
+            <section class="route">
+                <p>Garage</p>
+            </section>
             <section class="welcome-message">
                 <p>Welcome. Here you can see your tasks and move work forward.</p>
             </section>
@@ -74,8 +85,12 @@
                 </div>
             </section>
         </article>
-        <!-- <aside></aside> -->
     </main>
-    <footer></footer>
+    <footer class="dp-flex ai-center jc-center">
+        <p>
+            &copy; 2026 Garage. All rights reserved.
+            <a href="https://github.com/fouadsgarage" target="_blank" rel="noopener">github.com/fouadsgarage</a>
+        </p>
+    </footer>
 </body>
 </html>
