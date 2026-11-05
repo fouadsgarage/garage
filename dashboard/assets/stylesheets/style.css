@@ -1,0 +1,486 @@
+@charset "UTF-8";
+@import url(./defaults.css);
+
+:root {
+    /* ubuntu-font-family-0.83 */
+    --ubuntu-font-family-083-L: ubuntu-font-family-083-L;
+
+    /* gray-scale */
+    --gray-50:  #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --gray-950: #030712;
+    
+    /* blue scale */
+    --blue-50:  #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --blue-800: #1e40af;
+    --blue-900: #1e3a8a;
+    --blue-950: #172554;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: var(--ubuntu-font-family-083-L);
+}
+
+header {
+    background-color: var(--gray-100);
+    padding: 10px;
+}
+
+header .brandmark {
+    margin: 0 10px 0 0;
+}
+
+header .brandmark h1 {
+    color: var(--gray-950);
+    font-size: 22px;
+    font-weight: 100;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--gray-950);
+    margin: 0 5px 0 0;
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+header nav a svg {
+    margin: 0 5px 0 0;
+}
+
+/* main */
+
+main article {
+    margin: 25px;
+}
+
+main article .welcome-message {
+    margin: 0 0 25px 0;
+}
+
+main article .welcome-message p {
+    color: var(--gray-600);
+    font-weight: bold;
+}
+
+main article .guide {
+    margin: 0 0 25px 0;
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+main article .guide h2 {
+    color: var(--gray-950);
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 0 12px 0;
+}
+
+main article .guide .guide-steps .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 10px 0;
+}
+
+main article .guide .guide-steps .step:last-child {
+    margin: 0;
+}
+
+main article .guide .guide-steps .step .step-number {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blue-500);
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+main article .guide .guide-steps .step p {
+    color: var(--gray-600);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+main article .guide .guide-steps .step p a {
+    color: var(--blue-600);
+    text-decoration: none;
+}
+
+main article .guide .guide-steps .step p strong {
+    color: var(--gray-800);
+    font-weight: 500;
+}
+
+/* t */
+
+main article .terminal {
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+main article .terminal .terminal-body {
+    padding: 10px;
+    color: var(--gray-600);
+    font-size: 14px;
+}
+
+main article .terminal .terminal-body .line {
+    margin: 0 0 5px 0;
+}
+
+main article .terminal .terminal-body code {
+    color: var(--blue-600);
+}
+
+main article .terminal .terminal-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    border-top: 1px solid var(--gray-300);
+}
+
+main article .terminal .terminal-input .prompt {
+    color: var(--blue-600);
+}
+
+main article .terminal .terminal-input input {
+    width: 100%;
+    background-color: transparent;
+    color: var(--gray-800);
+    font-size: 14px;
+    outline: none;
+}
+
+main article .terminal .terminal-input input::placeholder {
+    color: var(--gray-400);
+}
+
+/* Tasks.html main */
+
+main article .tasks-board {
+    margin: 0 0 25px 0;
+}
+
+main article .tasks-board .board-header {
+    margin: 0 0 15px 0;
+}
+
+main article .tasks-board .board-header h2 {
+    color: var(--gray-950);
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+}
+
+main article .tasks-board .board-header .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--gray-200);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 0 5px 0;
+}
+
+main article .tasks-board .board-header .progress-bar .progress-fill {
+    height: 100%;
+    background-color: var(--blue-500);
+    transition: 0.3s;
+}
+
+main article .tasks-board .board-header .progress-text {
+    color: var(--gray-600);
+    font-size: 13px;
+}
+
+main article .tasks-board .task-create {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 15px 0;
+}
+
+main article .tasks-board .task-create input {
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 6px 8px;
+    font-size: 13px;
+    color: var(--gray-800);
+    background-color: white;
+}
+
+main article .tasks-board .task-create input::placeholder {
+    color: var(--gray-400);
+}
+
+main article .tasks-board .task-create button {
+    background-color: var(--blue-500);
+    color: white;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+main article .tasks-board .board-columns {
+    display: flex;
+    gap: 15px;
+}
+
+main article .tasks-board .board-columns .column {
+    flex: 1;
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+main article .tasks-board .board-columns .column h3 {
+    color: var(--gray-600);
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card {
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 0 8px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card.done {
+    opacity: 0.6;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-title {
+    color: var(--gray-800);
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-meta {
+    color: var(--gray-500);
+    font-size: 12px;
+    margin: 0 0 8px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .btn-start {
+    background-color: var(--gray-500);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+main article .tasks-board .board-columns .column .task-card .btn-success {
+    background-color: var(--blue-500);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+main article .tasks-board .task-actions {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 15px 0;
+}
+
+main article .tasks-board .task-actions button,
+main article .tasks-board .task-actions .import-label {
+    margin: 10px 0 0 0;
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--gray-800);
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    header nav a:hover {
+        background-color: var(--gray-200);
+    }
+
+    main article .tasks-board .task-create button:hover {
+        background-color: var(--blue-600);
+    }
+
+    main article .tasks-board .board-columns .column .task-card .btn-start:hover {
+        background-color: var(--gray-600);
+    }
+
+    main article .tasks-board .board-columns .column .task-card .btn-success:hover {
+        background-color: var(--blue-600);
+    }
+
+    main article .tasks-board .task-actions button:hover,
+    main article .tasks-board .task-actions .import-label:hover {
+        background-color: var(--gray-100);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    header .brandmark {
+        margin: 0;
+    }
+
+    header nav {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    header nav a {
+        margin: 0;
+    }
+
+    main article {
+        margin: 15px;
+    }
+
+    main article .guide .guide-steps .step {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    main article .terminal .terminal-input {
+        padding: 12px 10px;
+    }
+
+    main article .tasks-board .task-create {
+        flex-direction: column;
+    }
+
+    main article .tasks-board .task-create button {
+        padding: 10px 15px;
+    }
+
+    main article .tasks-board .board-columns {
+        flex-direction: column;
+    }
+
+    main article .tasks-board .board-columns .column .task-card .btn-start,
+    main article .tasks-board .board-columns .column .task-card .btn-success {
+        padding: 10px 15px;
+    }
+
+    main article .tasks-board .task-actions {
+        flex-direction: column;
+    }
+
+    main article .tasks-board .task-actions button,
+    main article .tasks-board .task-actions .import-label {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 640px) {
+    header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    header .brandmark {
+        margin: 0;
+    }
+
+    header nav {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    header nav a {
+        margin: 0;
+    }
+
+    main article {
+        margin: 15px;
+    }
+
+    main article .guide .guide-steps .step {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    main article .terminal .terminal-input {
+        padding: 12px 10px;
+    }
+
+    main article .tasks-board .task-create {
+        flex-direction: column;
+    }
+
+    main article .tasks-board .task-create button {
+        padding: 10px 15px;
+    }
+
+    main article .tasks-board .board-columns {
+        flex-direction: column;
+    }
+
+    main article .tasks-board .board-columns .column .task-card .btn-start,
+    main article .tasks-board .board-columns .column .task-card .btn-success {
+        padding: 10px 15px;
+    }
+
+    main article .tasks-board .task-actions {
+        flex-direction: column;
+    }
+
+    main article .tasks-board .task-actions button,
+    main article .tasks-board .task-actions .import-label {
+        padding: 10px 15px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    main article .tasks-board .board-columns {
+        flex-wrap: wrap;
+    }
+
+    main article .tasks-board .board-columns .column {
+        flex: 1 1 30%;
+    }
+}

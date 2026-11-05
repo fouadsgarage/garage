@@ -1,0 +1,36 @@
+@font-face {
+    font-family: ubuntu-font-family-083-L;
+    src: url(../fonts/ubuntu-font-family-0.83/ubuntu-font-family-0.83/Ubuntu-L.ttf);
+}
+
+.dp-flex {
+    display: flex;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: var(--gray-900);
+    color: var(--gray-50);
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 13px;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
