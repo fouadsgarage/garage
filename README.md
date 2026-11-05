@@ -90,29 +90,28 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 
 ```
 garage/
+├── .nojekyll
 ├── index.html
-├── tasks.html
-├── terminal.html
 ├── LICENSE
 ├── README.md
-├── .nojekyll
+├── tasks.html
+├── terminal.html
 └── dashboard/
-    ├── assets/
-    │   ├── engines/
-    │   │   └── engine.js
-    │   ├── fonts/
-    │   │   └── ubuntu-font-family-0.83/
-    │   │       └── ubuntu-font-family-0.83/
-    │   │           ├── Ubuntu-*.ttf
-    │   │           ├── LICENCE.txt
-    │   │           ├── LICENCE-FAQ.txt
-    │   │           ├── FONTLOG.txt
-    │   │           ├── copyright.txt
-    │   │           └── ...
-    │   └── stylesheets/
-    │       ├── defaults.css
-    │       └── style.css
-    └── core/
+    └── assets/
+        ├── engines/
+        │   └── engine.js
+        ├── fonts/
+        │   └── ubuntu-font-family-0.83/
+        │       └── ubuntu-font-family-0.83/
+        │           ├── Ubuntu-*.ttf
+        │           ├── LICENCE.txt
+        │           ├── LICENCE-FAQ.txt
+        │           ├── FONTLOG.txt
+        │           ├── copyright.txt
+        │           └── ...
+        └── stylesheets/
+            ├── defaults.css
+            └── style.css
 ```
 
 ---

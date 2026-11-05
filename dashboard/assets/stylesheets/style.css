@@ -49,6 +49,12 @@ header .brandmark {
     margin: 0 10px 0 0;
 }
 
+header .brandmark .brand-logo {
+    color: var(--gray-950);
+    margin: 0 6px 0 0;
+    flex-shrink: 0;
+}
+
 header .brandmark h1 {
     color: var(--gray-950);
     font-size: 22px;
@@ -70,6 +76,11 @@ header nav a svg {
 }
 
 /* main */
+
+main article .route {
+    color: var(--gray-200);
+    margin: 0 0 25px 0;
+}
 
 main article {
     margin: 25px;
@@ -137,6 +148,24 @@ main article .guide .guide-steps .step p a {
 main article .guide .guide-steps .step p strong {
     color: var(--gray-800);
     font-weight: 500;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+    margin: 25px 0 0 0;
+}
+
+footer p {
+    color: var(--gray-500);
+    font-size: 13px;
+}
+
+footer p a {
+    color: var(--blue-600);
+    text-decoration: none;
+    transition: 0.3s;
 }
 
 /* t */
@@ -354,6 +383,11 @@ main article .tasks-board .task-actions .import-label {
     main article .tasks-board .task-actions button:hover,
     main article .tasks-board .task-actions .import-label:hover {
         background-color: var(--gray-100);
+    }
+
+    footer p a:hover {
+        color: var(--blue-700);
+        text-decoration: underline;
     }
 }
 
