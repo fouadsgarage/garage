@@ -1,23 +1,25 @@
 const shareBtn = document.getElementById('share-btn');
 
-shareBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
+if (shareBtn) {
+    shareBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
 
-    const url = window.location.href;
+        const url = window.location.href;
 
-    try {
-        await navigator.clipboard.writeText(url);
-        showToast('Link copied to clipboard');
-    } catch (err) {
-        const input = document.createElement('input');
-        input.value = url;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand('copy');
-        document.body.removeChild(input);
-        showToast('Link copied to clipboard');
-    }
-});
+        try {
+            await navigator.clipboard.writeText(url);
+            showToast('Link copied to clipboard');
+        } catch (err) {
+            const input = document.createElement('input');
+            input.value = url;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            showToast('Link copied to clipboard');
+        }
+    });
+}
 
 function showToast(message) {
     const toast = document.createElement('div');
@@ -79,17 +81,19 @@ function handleCommand(cmd) {
     }
 }
 
-terminalForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+if (terminalForm && terminalInput && terminalBody) {
+    terminalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    const cmd = terminalInput.value.trim();
-    if (!cmd) return;
+        const cmd = terminalInput.value.trim();
+        if (!cmd) return;
 
-    appendLine(`> ${cmd}`, 'cmd');
-    terminalInput.value = '';
+        appendLine(`> ${cmd}`, 'cmd');
+        terminalInput.value = '';
 
-    handleCommand(cmd);
-});
+        handleCommand(cmd);
+    });
+}
 
 const tasks = [];
 
@@ -101,27 +105,29 @@ const boardColumns = document.getElementById('board-columns');
 const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+if (form && titleInput && assigneeInput && weightInput && boardColumns && progressFill && progressText) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    const title = titleInput.value.trim();
-    const assignee = assigneeInput.value.trim();
-    const weight = parseInt(weightInput.value, 10);
+        const title = titleInput.value.trim();
+        const assignee = assigneeInput.value.trim();
+        const weight = parseInt(weightInput.value, 10);
 
-    if (!title || !assignee || !weight) return;
+        if (!title || !assignee || !weight) return;
 
-    tasks.push({
-        id: Date.now().toString(),
-        title,
-        assignee,
-        weight,
-        status: 'todo'
+        tasks.push({
+            id: Date.now().toString(),
+            title,
+            assignee,
+            weight,
+            status: 'todo'
+        });
+
+        form.reset();
+        titleInput.focus();
+        render();
     });
-
-    form.reset();
-    titleInput.focus();
-    render();
-});
+}
 
 function render() {
     document.querySelectorAll('.column .task-card').forEach(card => card.remove());
@@ -179,54 +185,58 @@ function escapeHtml(str) {
 const exportBtn = document.getElementById('export-json');
 const importInput = document.getElementById('import-json');
 
-exportBtn.addEventListener('click', () => {
-    const data = {
-        project: {
-            name: 'Garage',
-            updated_at: new Date().toISOString()
-        },
-        tasks: tasks
-    };
+if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+        const data = {
+            project: {
+                name: 'Garage',
+                updated_at: new Date().toISOString()
+            },
+            tasks: tasks
+        };
 
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `project-status-${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-});
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `project-status-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+}
 
-importInput.addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+if (importInput) {
+    importInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
 
-    try {
-        const text = await file.text();
-        const data = JSON.parse(text);
+        try {
+            const text = await file.text();
+            const data = JSON.parse(text);
 
-        if (!Array.isArray(data.tasks)) {
-            alert('Invalid JSON: missing tasks array.');
-            return;
+            if (!Array.isArray(data.tasks)) {
+                alert('Invalid JSON: missing tasks array.');
+                return;
+            }
+
+            tasks.length = 0;
+            data.tasks.forEach(t => {
+                if (t.id && t.title && t.assignee && t.weight && t.status) {
+                    tasks.push({
+                        id: String(t.id),
+                        title: String(t.title),
+                        assignee: String(t.assignee),
+                        weight: parseInt(t.weight, 10),
+                        status: ['todo', 'in_progress', 'done'].includes(t.status) ? t.status : 'todo'
+                    });
+                }
+            });
+
+            render();
+        } catch (err) {
+            alert('Failed to parse JSON: ' + err.message);
         }
 
-        tasks.length = 0;
-        data.tasks.forEach(t => {
-            if (t.id && t.title && t.assignee && t.weight && t.status) {
-                tasks.push({
-                    id: String(t.id),
-                    title: String(t.title),
-                    assignee: String(t.assignee),
-                    weight: parseInt(t.weight, 10),
-                    status: ['todo', 'in_progress', 'done'].includes(t.status) ? t.status : 'todo'
-                });
-            }
-        });
-
-        render();
-    } catch (err) {
-        alert('Failed to parse JSON: ' + err.message);
-    }
-
-    importInput.value = '';
-});
+        importInput.value = '';
+    });
+}
