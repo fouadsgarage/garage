@@ -182,5 +182,3 @@ The **Ubuntu Font** is used under its own license (Ubuntu Font Licence 1.0), inc
 ---
 
 **Garage** — *Create the structure once. Focus on building.*
-
-⭐ If you find this useful, consider giving it a star!
