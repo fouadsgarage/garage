@@ -2,10 +2,8 @@
 @import url(./defaults.css);
 
 :root {
-    /* ubuntu-font-family-0.83 */
     --ubuntu-font-family-083-L: ubuntu-font-family-083-L;
 
-    /* gray-scale */
     --gray-50:  #f9fafb;
     --gray-100: #f3f4f6;
     --gray-200: #e5e7eb;
@@ -17,8 +15,7 @@
     --gray-800: #1f2937;
     --gray-900: #111827;
     --gray-950: #030712;
-    
-    /* blue scale */
+
     --blue-50:  #eff6ff;
     --blue-100: #dbeafe;
     --blue-200: #bfdbfe;
@@ -38,6 +35,12 @@
     border: 0;
     padding: 0;
     font-family: var(--ubuntu-font-family-083-L);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -61,10 +64,16 @@ header .brandmark h1 {
     font-weight: 100;
 }
 
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+}
+
 header nav a {
     text-decoration: none;
     color: var(--gray-950);
-    margin: 0 5px 0 0;
     border: 1px solid var(--gray-300);
     border-radius: 5px;
     padding: 5px;
@@ -75,7 +84,17 @@ header nav a svg {
     margin: 0 5px 0 0;
 }
 
-/* main */
+header nav a#back-btn {
+    color: var(--gray-600);
+}
+
+header nav a#back-btn span {
+    margin: 0 0 0 5px;
+}
+
+main {
+    flex: 1;
+}
 
 main article .route {
     color: var(--gray-200);
@@ -151,10 +170,8 @@ main article .guide .guide-steps .step p strong {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
+    margin-top: auto;
     padding: 15px;
-    margin: 25px 0 0 0;
 }
 
 footer p {
@@ -167,8 +184,6 @@ footer p a {
     text-decoration: none;
     transition: 0.3s;
 }
-
-/* t */
 
 main article .terminal {
     border: 1px solid var(--gray-300);
@@ -213,8 +228,6 @@ main article .terminal .terminal-input input {
 main article .terminal .terminal-input input::placeholder {
     color: var(--gray-400);
 }
-
-/* Tasks.html main */
 
 main article .tasks-board {
     margin: 0 0 25px 0;
@@ -404,6 +417,7 @@ main article .tasks-board .task-actions .import-label {
     header nav {
         flex-wrap: wrap;
         gap: 5px;
+        margin-left: 0;
     }
 
     header nav a {
@@ -463,6 +477,7 @@ main article .tasks-board .task-actions .import-label {
     header nav {
         flex-wrap: wrap;
         gap: 5px;
+        margin-left: 0;
     }
 
     header nav a {
