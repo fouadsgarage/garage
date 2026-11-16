@@ -4,6 +4,9 @@
 :root {
     --ubuntu-font-family-083-L: ubuntu-font-family-083-L;
 
+    --font-sans: var(--ubuntu-font-family-083-L), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+
     --gray-50:  #f9fafb;
     --gray-100: #f3f4f6;
     --gray-200: #e5e7eb;
@@ -27,6 +30,15 @@
     --blue-800: #1e40af;
     --blue-900: #1e3a8a;
     --blue-950: #172554;
+
+    --green-500: #10b981;
+    --green-600: #059669;
+    --green-700: #047857;
+
+    --content-width: 1120px;
+    --gutter: 24px;
+    --control-h: 36px;
+    --ease: 0.15s ease;
 }
 
 * {
@@ -34,18 +46,35 @@
     margin: 0;
     border: 0;
     padding: 0;
-    font-family: var(--ubuntu-font-family-083-L);
+    font-family: var(--font-sans);
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--gray-50);
+    color: var(--gray-800);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible,
+button:focus-visible,
+.import-label:focus-within {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
 }
 
 header {
-    background-color: var(--gray-100);
-    padding: 10px;
+    background-color: white;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 12px max(var(--gutter), calc((100% - var(--content-width)) / 2 + var(--gutter)));
 }
 
 header .brandmark {
@@ -53,125 +82,422 @@ header .brandmark {
 }
 
 header .brandmark .brand-logo {
-    color: var(--gray-950);
-    margin: 0 6px 0 0;
+    color: var(--blue-600);
+    margin: 0 8px 0 0;
     flex-shrink: 0;
 }
 
 header .brandmark h1 {
-    color: var(--gray-950);
-    font-size: 22px;
-    font-weight: 100;
+    color: var(--gray-900);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
 }
 
 header nav {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     margin-left: auto;
 }
 
 header nav a {
+    gap: 6px;
     text-decoration: none;
-    color: var(--gray-950);
+    color: var(--gray-700);
+    font-size: 13px;
+    font-weight: 500;
+    background-color: white;
     border: 1px solid var(--gray-300);
     border-radius: 5px;
-    padding: 5px;
-    transition: 0.3s;
+    padding: 6px 12px;
+    transition: background-color var(--ease), border-color var(--ease);
 }
 
 header nav a svg {
-    margin: 0 5px 0 0;
+    margin: 0;
+    color: var(--gray-500);
+    flex-shrink: 0;
 }
 
 header nav a#back-btn {
     color: var(--gray-600);
 }
 
-header nav a#back-btn span {
-    margin: 0 0 0 5px;
-}
-
 main {
     flex: 1;
 }
 
-main article .route {
-    color: var(--gray-200);
-    margin: 0 0 25px 0;
+main article {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 28px var(--gutter) 40px;
 }
 
-main article {
-    margin: 25px;
+main article .route {
+    color: var(--gray-500);
+    font-size: 13px;
+    margin: 0 0 20px 0;
 }
 
 main article .welcome-message {
-    margin: 0 0 25px 0;
+    margin: 0 0 24px 0;
 }
 
 main article .welcome-message p {
-    color: var(--gray-600);
-    font-weight: bold;
+    color: var(--gray-700);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
 }
 
 main article .guide {
-    margin: 0 0 25px 0;
-    background-color: var(--gray-50);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 15px;
+    margin: 0 0 24px 0;
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 20px;
 }
 
 main article .guide h2 {
-    color: var(--gray-950);
-    font-size: 16px;
-    font-weight: 400;
-    margin: 0 0 12px 0;
+    color: var(--gray-900);
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+}
+
+main article .guide .guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px 32px;
 }
 
 main article .guide .guide-steps .step {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    margin: 0 0 10px 0;
-}
-
-main article .guide .guide-steps .step:last-child {
+    gap: 12px;
     margin: 0;
 }
 
 main article .guide .guide-steps .step .step-number {
     flex-shrink: 0;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--blue-500);
-    color: white;
+    background-color: var(--blue-50);
+    color: var(--blue-700);
+    border: 1px solid var(--blue-200);
     border-radius: 50%;
     font-size: 12px;
+    font-weight: 500;
 }
 
 main article .guide .guide-steps .step p {
     color: var(--gray-600);
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 main article .guide .guide-steps .step p a {
     color: var(--blue-600);
+    font-weight: 500;
     text-decoration: none;
 }
 
 main article .guide .guide-steps .step p strong {
-    color: var(--gray-800);
+    color: var(--gray-900);
     font-weight: 500;
+}
+
+main article .terminal,
+main article .terminal * {
+    font-family: var(--font-mono);
+}
+
+main article .terminal {
+    background-color: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+main article .terminal:focus-within {
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+main article .terminal .terminal-body {
+    padding: 16px;
+    min-height: 240px;
+    max-height: 60vh;
+    overflow-y: auto;
+    color: var(--gray-400);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+main article .terminal .terminal-body .line {
+    margin: 0 0 4px 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+main article .terminal .terminal-body .line.cmd {
+    color: var(--gray-100);
+}
+
+main article .terminal .terminal-body code {
+    color: var(--blue-300);
+    background-color: rgba(96, 165, 250, 0.12);
+    border-radius: 3px;
+    padding: 1px 6px;
+}
+
+main article .terminal .terminal-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--gray-800);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+main article .terminal .terminal-input .prompt {
+    color: var(--blue-400);
+    font-weight: 700;
+}
+
+main article .terminal .terminal-input input {
+    width: 100%;
+    background-color: transparent;
+    color: var(--gray-100);
+    caret-color: var(--blue-400);
+    font-size: 13px;
+    outline: none;
+}
+
+main article .terminal .terminal-input input::placeholder {
+    color: var(--gray-600);
+}
+
+main article .tasks-board {
+    margin: 0;
+}
+
+main article .tasks-board .board-header {
+    margin: 0 0 20px 0;
+}
+
+main article .tasks-board .board-header h2 {
+    color: var(--gray-900);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px 0;
+}
+
+main article .tasks-board .board-header .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--gray-200);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0 0 6px 0;
+}
+
+main article .tasks-board .board-header .progress-bar .progress-fill {
+    height: 100%;
+    background-color: var(--blue-600);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+main article .tasks-board .board-header .progress-text {
+    color: var(--gray-600);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+main article .tasks-board .task-create {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 20px 0;
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+main article .tasks-board .task-create input {
+    flex: 1 1 0;
+    min-width: 0;
+    height: var(--control-h);
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 13px;
+    color: var(--gray-900);
+    background-color: white;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+main article .tasks-board .task-create input[name="title"] {
+    flex: 2 1 0;
+}
+
+main article .tasks-board .task-create input[name="weight"] {
+    flex: 0 0 110px;
+}
+
+main article .tasks-board .task-create input::placeholder {
+    color: var(--gray-400);
+}
+
+main article .tasks-board .task-create input:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+main article .tasks-board .task-create button {
+    height: var(--control-h);
+    background-color: var(--blue-600);
+    color: white;
+    border-radius: 5px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--ease);
+}
+
+main article .tasks-board .board-columns {
+    display: flex;
+    gap: 16px;
+}
+
+main article .tasks-board .board-columns .column {
+    flex: 1;
+    min-width: 0;
+    min-height: 200px;
+    background-color: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-top: 3px solid var(--gray-400);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+main article .tasks-board .board-columns .column[data-status="in_progress"] {
+    border-top-color: var(--blue-500);
+}
+
+main article .tasks-board .board-columns .column[data-status="done"] {
+    border-top-color: var(--green-500);
+}
+
+main article .tasks-board .board-columns .column h3 {
+    color: var(--gray-700);
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card {
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    padding: 12px;
+    margin: 0 0 8px 0;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+main article .tasks-board .board-columns .column .task-card:last-child {
+    margin-bottom: 0;
+}
+
+main article .tasks-board .board-columns .column .task-card.done {
+    background-color: var(--gray-50);
+}
+
+main article .tasks-board .board-columns .column .task-card.done .task-title {
+    color: var(--gray-500);
+    text-decoration: line-through;
+    text-decoration-color: var(--gray-300);
+}
+
+main article .tasks-board .board-columns .column .task-card .task-title {
+    color: var(--gray-900);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 4px 0;
+    overflow-wrap: anywhere;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-meta {
+    color: var(--gray-500);
+    font-size: 12px;
+    margin: 0 0 12px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-meta:last-child {
+    margin-bottom: 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .btn-start,
+main article .tasks-board .board-columns .column .task-card .btn-success {
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--ease), border-color var(--ease);
+}
+
+main article .tasks-board .board-columns .column .task-card .btn-start {
+    background-color: white;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+
+main article .tasks-board .board-columns .column .task-card .btn-success {
+    background-color: var(--green-600);
+    color: white;
+}
+
+main article .tasks-board .task-actions {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0 0 0;
+}
+
+main article .tasks-board .task-actions button,
+main article .tasks-board .task-actions .import-label {
+    display: inline-flex;
+    align-items: center;
+    height: var(--control-h);
+    margin: 0;
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 0 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-700);
+    background-color: white;
+    cursor: pointer;
+    transition: background-color var(--ease), border-color var(--ease);
 }
 
 footer {
     margin-top: auto;
-    padding: 15px;
+    padding: 16px;
+    background-color: white;
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
 }
 
 footer p {
@@ -181,221 +507,66 @@ footer p {
 
 footer p a {
     color: var(--blue-600);
+    font-weight: 500;
     text-decoration: none;
-    transition: 0.3s;
+    margin-left: 4px;
+    transition: color var(--ease);
 }
 
-main article .terminal {
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-main article .terminal .terminal-body {
-    padding: 10px;
-    color: var(--gray-600);
-    font-size: 14px;
-}
-
-main article .terminal .terminal-body .line {
-    margin: 0 0 5px 0;
-}
-
-main article .terminal .terminal-body code {
-    color: var(--blue-600);
-}
-
-main article .terminal .terminal-input {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px;
-    border-top: 1px solid var(--gray-300);
-}
-
-main article .terminal .terminal-input .prompt {
-    color: var(--blue-600);
-}
-
-main article .terminal .terminal-input input {
-    width: 100%;
-    background-color: transparent;
-    color: var(--gray-800);
-    font-size: 14px;
-    outline: none;
-}
-
-main article .terminal .terminal-input input::placeholder {
-    color: var(--gray-400);
-}
-
-main article .tasks-board {
-    margin: 0 0 25px 0;
-}
-
-main article .tasks-board .board-header {
-    margin: 0 0 15px 0;
-}
-
-main article .tasks-board .board-header h2 {
-    color: var(--gray-950);
-    font-size: 18px;
-    font-weight: 400;
-    margin: 0 0 10px 0;
-}
-
-main article .tasks-board .board-header .progress-bar {
-    width: 100%;
-    height: 8px;
-    background-color: var(--gray-200);
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 0 0 5px 0;
-}
-
-main article .tasks-board .board-header .progress-bar .progress-fill {
-    height: 100%;
-    background-color: var(--blue-500);
-    transition: 0.3s;
-}
-
-main article .tasks-board .board-header .progress-text {
-    color: var(--gray-600);
-    font-size: 13px;
-}
-
-main article .tasks-board .task-create {
-    display: flex;
-    gap: 8px;
-    margin: 0 0 15px 0;
-}
-
-main article .tasks-board .task-create input {
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 6px 8px;
-    font-size: 13px;
-    color: var(--gray-800);
-    background-color: white;
-}
-
-main article .tasks-board .task-create input::placeholder {
-    color: var(--gray-400);
-}
-
-main article .tasks-board .task-create button {
-    background-color: var(--blue-500);
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 1000;
+    transform: translate(-50%, 8px);
+    background-color: var(--gray-900);
     color: white;
-    border-radius: 5px;
-    padding: 6px 12px;
     font-size: 13px;
-    cursor: pointer;
-    transition: 0.3s;
+    padding: 10px 16px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-main article .tasks-board .board-columns {
-    display: flex;
-    gap: 15px;
-}
-
-main article .tasks-board .board-columns .column {
-    flex: 1;
-    background-color: var(--gray-50);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-main article .tasks-board .board-columns .column h3 {
-    color: var(--gray-600);
-    font-size: 13px;
-    font-weight: 400;
-    margin: 0 0 10px 0;
-}
-
-main article .tasks-board .board-columns .column .task-card {
-    background-color: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0 0 8px 0;
-}
-
-main article .tasks-board .board-columns .column .task-card.done {
-    opacity: 0.6;
-}
-
-main article .tasks-board .board-columns .column .task-card .task-title {
-    color: var(--gray-800);
-    font-size: 14px;
-    margin: 0 0 5px 0;
-}
-
-main article .tasks-board .board-columns .column .task-card .task-meta {
-    color: var(--gray-500);
-    font-size: 12px;
-    margin: 0 0 8px 0;
-}
-
-main article .tasks-board .board-columns .column .task-card .btn-start {
-    background-color: var(--gray-500);
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-main article .tasks-board .board-columns .column .task-card .btn-success {
-    background-color: var(--blue-500);
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-main article .tasks-board .task-actions {
-    display: flex;
-    gap: 8px;
-    margin: 0 0 15px 0;
-}
-
-main article .tasks-board .task-actions button,
-main article .tasks-board .task-actions .import-label {
-    margin: 10px 0 0 0;
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 6px 12px;
-    font-size: 13px;
-    color: var(--gray-800);
-    background-color: white;
-    cursor: pointer;
-    transition: 0.3s;
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
 @media (hover: hover) and (pointer: fine) {
     header nav a:hover {
-        background-color: var(--gray-200);
+        background-color: var(--gray-50);
+        border-color: var(--gray-400);
+    }
+
+    main article .guide .guide-steps .step p a:hover {
+        text-decoration: underline;
     }
 
     main article .tasks-board .task-create button:hover {
-        background-color: var(--blue-600);
+        background-color: var(--blue-700);
+    }
+
+    main article .tasks-board .board-columns .column .task-card:hover {
+        border-color: var(--gray-300);
+        box-shadow: 0 2px 6px rgba(17, 24, 39, 0.08);
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-start:hover {
-        background-color: var(--gray-600);
+        background-color: var(--gray-100);
+        border-color: var(--gray-400);
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-success:hover {
-        background-color: var(--blue-600);
+        background-color: var(--green-700);
     }
 
     main article .tasks-board .task-actions button:hover,
     main article .tasks-board .task-actions .import-label:hover {
-        background-color: var(--gray-100);
+        background-color: var(--gray-50);
+        border-color: var(--gray-400);
     }
 
     footer p a:hover {
@@ -405,66 +576,25 @@ main article .tasks-board .task-actions .import-label {
 }
 
 @media (hover: none) and (pointer: coarse) {
-    header {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    header .brandmark {
-        margin: 0;
-    }
-
-    header nav {
-        flex-wrap: wrap;
-        gap: 5px;
-        margin-left: 0;
+    :root {
+        --control-h: 44px;
     }
 
     header nav a {
-        margin: 0;
-    }
-
-    main article {
-        margin: 15px;
-    }
-
-    main article .guide .guide-steps .step {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    main article .terminal .terminal-input {
-        padding: 12px 10px;
-    }
-
-    main article .tasks-board .task-create {
-        flex-direction: column;
-    }
-
-    main article .tasks-board .task-create button {
-        padding: 10px 15px;
-    }
-
-    main article .tasks-board .board-columns {
-        flex-direction: column;
+        padding: 10px 14px;
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-start,
     main article .tasks-board .board-columns .column .task-card .btn-success {
-        padding: 10px 15px;
-    }
-
-    main article .tasks-board .task-actions {
-        flex-direction: column;
-    }
-
-    main article .tasks-board .task-actions button,
-    main article .tasks-board .task-actions .import-label {
-        padding: 10px 15px;
+        padding: 10px 16px;
     }
 }
 
 @media (max-width: 640px) {
+    :root {
+        --gutter: 16px;
+    }
+
     header {
         flex-wrap: wrap;
         gap: 8px;
@@ -476,60 +606,35 @@ main article .tasks-board .task-actions .import-label {
 
     header nav {
         flex-wrap: wrap;
-        gap: 5px;
         margin-left: 0;
     }
 
-    header nav a {
-        margin: 0;
-    }
-
     main article {
-        margin: 15px;
+        padding-top: 20px;
     }
 
-    main article .guide .guide-steps .step {
-        flex-direction: column;
-        gap: 5px;
+    main article .terminal .terminal-body {
+        min-height: 180px;
     }
 
-    main article .terminal .terminal-input {
-        padding: 12px 10px;
-    }
-
-    main article .tasks-board .task-create {
-        flex-direction: column;
-    }
-
-    main article .tasks-board .task-create button {
-        padding: 10px 15px;
-    }
-
-    main article .tasks-board .board-columns {
-        flex-direction: column;
-    }
-
-    main article .tasks-board .board-columns .column .task-card .btn-start,
-    main article .tasks-board .board-columns .column .task-card .btn-success {
-        padding: 10px 15px;
-    }
-
+    main article .tasks-board .task-create,
+    main article .tasks-board .board-columns,
     main article .tasks-board .task-actions {
         flex-direction: column;
     }
 
-    main article .tasks-board .task-actions button,
-    main article .tasks-board .task-actions .import-label {
-        padding: 10px 15px;
-    }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-    main article .tasks-board .board-columns {
-        flex-wrap: wrap;
+    main article .tasks-board .task-create input[name="title"],
+    main article .tasks-board .task-create input[name="weight"] {
+        flex: 0 0 auto;
     }
 
     main article .tasks-board .board-columns .column {
-        flex: 1 1 30%;
+        min-height: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
     }
 }
