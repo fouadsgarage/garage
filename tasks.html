@@ -23,7 +23,7 @@
             <h1>Dashboard</h1>
         </div>
         <nav>
-            <a href="/garage" class="dp-flex ai-center jc-center" id="back-btn" aria-label="Back">
+            <a href="/" class="dp-flex ai-center jc-center" id="back-btn" aria-label="Back">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -65,7 +65,9 @@
                     <input type="text" name="assignee" id="task-assignee" placeholder="Assignee" required>
                     <input type="number" name="weight" id="task-weight" placeholder="Weight %" min="1" max="100" required>
                     <button type="submit">Add task</button>
+                    <button type="button" class="btn-cancel" id="task-cancel" hidden>Cancel</button>
                 </form>
+                <p class="weight-hint" id="weight-hint"></p>
 
                 <div class="board-columns" id="board-columns">
                     <div class="column" data-status="todo">
@@ -87,7 +89,6 @@
                 </div>
             </section>
         </article>
-        <!-- <aside></aside> -->
     </main>
     <footer class="dp-flex ai-center jc-center">
         <p>
@@ -95,5 +96,9 @@
             <a href="https://github.com/fouadsgarage" target="_blank" rel="noopener">github.com/fouadsgarage</a>
         </p>
     </footer>
+    <dialog class="dialog" id="dialog">
+        <p class="dialog-message" id="dialog-message"></p>
+        <div class="dialog-actions" id="dialog-actions"></div>
+    </dialog>
 </body>
 </html>
