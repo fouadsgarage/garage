@@ -605,14 +605,15 @@ main article .tasks-board .board-header .progress-text {
 main article .tasks-board .task-create {
     display: flex;
     gap: 8px;
-    margin: 0 0 20px 0;
+    margin: 0 0 8px 0;
     background-color: white;
     border: 1px solid var(--gray-200);
     border-radius: 8px;
     padding: 12px;
 }
 
-main article .tasks-board .task-create input {
+main article .tasks-board .task-create input,
+main article .tasks-board .task-create select {
     flex: 1 1 0;
     min-width: 0;
     height: var(--control-h);
@@ -637,7 +638,8 @@ main article .tasks-board .task-create input::placeholder {
     color: var(--gray-400);
 }
 
-main article .tasks-board .task-create input:focus {
+main article .tasks-board .task-create input:focus,
+main article .tasks-board .task-create select:focus {
     outline: none;
     border-color: var(--blue-500);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
@@ -667,8 +669,138 @@ main article .tasks-board .task-create button.btn-cancel {
     border: 1px solid var(--gray-300);
 }
 
+main article .tasks-board .task-extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 20px 0;
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+main article .tasks-board .task-extra input,
+main article .tasks-board .task-extra select {
+    flex: 1 1 180px;
+    min-width: 0;
+    height: var(--control-h);
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 13px;
+    color: var(--gray-900);
+    background-color: white;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+main article .tasks-board .task-extra input[type="date"] {
+    flex: 0 0 160px;
+}
+
+main article .tasks-board .task-extra select {
+    flex: 0 0 150px;
+}
+
+main article .tasks-board .task-extra input::placeholder {
+    color: var(--gray-400);
+}
+
+main article .tasks-board .task-extra input:focus,
+main article .tasks-board .task-extra select:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+main article .tasks-board .task-filters {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 16px 0;
+}
+
+main article .tasks-board .task-filters input,
+main article .tasks-board .task-filters select {
+    flex: 1 1 0;
+    min-width: 0;
+    height: var(--control-h);
+    border: 1px solid var(--gray-300);
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 13px;
+    color: var(--gray-900);
+    background-color: white;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+main article .tasks-board .task-filters select {
+    flex: 0 0 200px;
+}
+
+main article .tasks-board .task-filters input::placeholder {
+    color: var(--gray-400);
+}
+
+main article .tasks-board .task-filters input:focus,
+main article .tasks-board .task-filters select:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+main article .tasks-board .assignee-summary {
+    margin: 0 0 16px 0;
+}
+
+main article .tasks-board .assignee-summary h3 {
+    color: var(--gray-700);
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+}
+
+main article .tasks-board .assignee-summary .assignee-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px 0;
+    font-size: 12px;
+}
+
+main article .tasks-board .assignee-summary .assignee-name {
+    flex: 0 0 120px;
+    color: var(--gray-800);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+main article .tasks-board .assignee-summary .assignee-bar {
+    flex: 1 1 0;
+    height: 6px;
+    background-color: var(--gray-200);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+main article .tasks-board .assignee-summary .assignee-bar span {
+    display: block;
+    height: 100%;
+    background-color: var(--blue-500);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+main article .tasks-board .assignee-summary .assignee-value {
+    flex: 0 0 auto;
+    color: var(--gray-600);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
 main article .tasks-board .weight-hint {
-    margin: -10px 0 20px 2px;
+    margin: 0 0 16px 2px;
     color: var(--gray-600);
     font-size: 13px;
     font-variant-numeric: tabular-nums;
@@ -692,6 +824,12 @@ main article .tasks-board .board-columns .column {
     border-top: 3px solid var(--gray-400);
     border-radius: 8px;
     padding: 12px;
+    transition: background-color var(--ease), border-color var(--ease);
+}
+
+main article .tasks-board .board-columns .column.drag-over {
+    background-color: var(--blue-50);
+    border-color: var(--blue-400);
 }
 
 main article .tasks-board .board-columns .column[data-status="in_progress"] {
@@ -715,7 +853,13 @@ main article .tasks-board .board-columns .column .task-card {
     border-radius: 6px;
     padding: 12px;
     margin: 0 0 8px 0;
-    transition: border-color var(--ease), box-shadow var(--ease);
+    cursor: grab;
+    transition: border-color var(--ease), box-shadow var(--ease), opacity var(--ease);
+}
+
+main article .tasks-board .board-columns .column .task-card.dragging {
+    opacity: 0.45;
+    cursor: grabbing;
 }
 
 main article .tasks-board .board-columns .column .task-card:last-child {
@@ -744,7 +888,94 @@ main article .tasks-board .board-columns .column .task-card .task-title {
 main article .tasks-board .board-columns .column .task-card .task-meta {
     color: var(--gray-500);
     font-size: 12px;
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-description {
+    color: var(--gray-600);
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+    overflow-wrap: anywhere;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 8px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-priority {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+main article .tasks-board .board-columns .column .task-card .priority-low {
+    color: var(--gray-600);
+    background-color: var(--gray-100);
+    border-color: var(--gray-300);
+}
+
+main article .tasks-board .board-columns .column .task-card .priority-medium {
+    color: var(--blue-700);
+    background-color: var(--blue-50);
+    border-color: var(--blue-200);
+}
+
+main article .tasks-board .board-columns .column .task-card .priority-high {
+    color: var(--amber-800);
+    background-color: var(--amber-50);
+    border-color: var(--amber-300);
+}
+
+main article .tasks-board .board-columns .column .task-card .priority-urgent {
+    color: var(--red-700);
+    background-color: var(--red-50);
+    border-color: var(--red-300);
+}
+
+main article .tasks-board .board-columns .column .task-card .task-due {
+    display: inline-flex;
+    align-items: center;
+    color: var(--gray-600);
+    background-color: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-due.overdue {
+    color: var(--red-700);
+    background-color: var(--red-50);
+    border-color: var(--red-300);
+}
+
+main article .tasks-board .board-columns .column .task-card .task-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0 0 10px 0;
+}
+
+main article .tasks-board .board-columns .column .task-card .task-tag {
+    display: inline-block;
+    background-color: var(--gray-100);
+    color: var(--gray-600);
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+    line-height: 1.5;
 }
 
 main article .tasks-board .board-columns .column .task-card .btn-start,
@@ -810,6 +1041,12 @@ main article .tasks-board .task-actions .import-label {
     background-color: white;
     cursor: pointer;
     transition: background-color var(--ease), border-color var(--ease);
+}
+
+main article .tasks-board .task-actions button.btn-reset {
+    color: var(--red-600);
+    border-color: var(--red-300);
+    margin-left: auto;
 }
 
 .dialog {
@@ -974,6 +1211,11 @@ footer p a {
         border-color: var(--gray-400);
     }
 
+    main article .tasks-board .task-actions button.btn-reset:hover {
+        background-color: var(--red-50);
+        border-color: var(--red-300);
+    }
+
     main.docs .docs-nav a:hover {
         color: var(--gray-900);
         border-left-color: var(--gray-400);
@@ -1070,18 +1312,27 @@ footer p a {
     }
 
     main article .tasks-board .task-create,
+    main article .tasks-board .task-extra,
+    main article .tasks-board .task-filters,
     main article .tasks-board .board-columns,
     main article .tasks-board .task-actions {
         flex-direction: column;
     }
 
     main article .tasks-board .task-create input[name="title"],
-    main article .tasks-board .task-create input[name="weight"] {
+    main article .tasks-board .task-create input[name="weight"],
+    main article .tasks-board .task-extra input[type="date"],
+    main article .tasks-board .task-extra select,
+    main article .tasks-board .task-filters select {
         flex: 0 0 auto;
     }
 
     main article .tasks-board .board-columns .column {
         min-height: 0;
+    }
+
+    main article .tasks-board .task-actions button.btn-reset {
+        margin-left: 0;
     }
 
     main article .doc .guide .guide-steps {
