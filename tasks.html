@@ -67,7 +67,29 @@
                     <button type="submit">Add task</button>
                     <button type="button" class="btn-cancel" id="task-cancel" hidden>Cancel</button>
                 </form>
+
+                <div class="task-extra" id="task-extra">
+                    <input type="text" name="description" id="task-description" placeholder="Description (optional)">
+                    <input type="date" name="due_date" id="task-due-date" placeholder="Due date">
+                    <select name="priority" id="task-priority">
+                        <option value="low">Low priority</option>
+                        <option value="medium" selected>Medium priority</option>
+                        <option value="high">High priority</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                    <input type="text" name="tags" id="task-tags" placeholder="Tags (comma separated)">
+                </div>
+
                 <p class="weight-hint" id="weight-hint"></p>
+
+                <div class="task-filters">
+                    <input type="search" id="task-search" placeholder="Search tasks...">
+                    <select id="assignee-filter">
+                        <option value="">All assignees</option>
+                    </select>
+                </div>
+
+                <div class="assignee-summary" id="assignee-summary"></div>
 
                 <div class="board-columns" id="board-columns">
                     <div class="column" data-status="todo">
@@ -86,6 +108,7 @@
                         Import JSON
                         <input type="file" id="import-json" accept=".json" hidden>
                     </label>
+                    <button type="button" id="reset-data" class="btn-reset">Reset data</button>
                 </div>
             </section>
         </article>
