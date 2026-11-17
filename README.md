@@ -14,7 +14,7 @@
 
 ## What is Garage?
 
-**Garage** is a lightweight, self-hosted project task board that runs **entirely in your browser** — no backend, no database, no build step. It stores project state in a single `project-status.json` file that lives alongside your project. Share it, version it with Git, and keep full control of your data.
+**Garage** is a lightweight, self-hosted project task board that runs **entirely in your browser** — no backend, no database, no build step. Your tasks are saved automatically in your browser, and you can export the whole project state to a single JSON file that lives alongside your project. Share it, version it with Git, and keep full control of your data.
 
 > **Explore GitHub. Understand projects. Stay in your terminal.**
 
@@ -24,6 +24,8 @@
 
 **[https://fouadsgarage.github.io/garage/](https://fouadsgarage.github.io/garage/)**
 
+The home page doubles as the **documentation**, with a table of contents covering every feature.
+
 ---
 
 ## Features
@@ -31,9 +33,15 @@
 | Feature | Description |
 |---|---|
 | **Task Creation** | Create tasks with title, assignee, and weight (percentage of project) |
+| **Edit & Delete** | Edit any task in place, or delete it after a confirmation |
+| **Move Back & Reopen** | Send an In Progress task back to To Do, or reopen a Done task |
 | **Three-Column Board** | To Do → In Progress → Done |
+| **Weight Validation** | Weights stay between 1 and 100, with a live "remaining weight" hint and no way to go over 100% |
 | **Auto Progress** | Project completion calculated automatically from task weights |
-| **JSON Export / Import** | Save and load project state as a single JSON file |
+| **Auto-Save** | Tasks are saved in your browser after every change, so a reload loses nothing |
+| **JSON Export / Import** | Save and load project state as a single, versioned JSON file |
+| **Safe Import** | Merge, replace, or cancel when the board already has tasks; invalid tasks are skipped and counted |
+| **Built-in Documentation** | The home page is a full user guide with a sticky table of contents |
 | **Terminal Commands** | `help`, `clear`, `version` — built-in terminal for power users |
 | **Share Button** | Copy the page URL to your clipboard instantly |
 | **GitHub Pages Ready** | Deploy in one click — no server required |
@@ -49,7 +57,7 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 
 | Typical tools | Garage |
 |---|---|
-| Data on someone else's server | Data in your own repo |
+| Data on someone else's server | Data in your browser and your own repo |
 | Requires hosting and a database | Static files only |
 | Complex setup | Fork and enable GitHub Pages |
 | Vendor lock-in | Plain JSON, fully readable |
@@ -63,12 +71,101 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 ```
 1. Open Garage in your browser
 2. Add tasks and assign weights
-3. Click "Export JSON" → project-status.json
-4. Commit the file to your project repo
-5. To view or update, import the latest JSON
+3. Move tasks across the board as work progresses (saved automatically)
+4. Click "Export JSON" → project-status-YYYY-MM-DD.json
+5. Commit the file to your project repo
+6. To view or update, import the latest JSON (merge or replace)
 ```
 
 **GitHub itself becomes your sync layer:** every change is a commit, every review is a pull request.
+
+---
+
+## Tasks
+
+| Action | Where | What it does |
+|---|---|---|
+| **Start** | To Do | Moves the task to In Progress |
+| **Success** | In Progress | Marks the task as Done |
+| **Back** | In Progress | Returns the task to To Do |
+| **Reopen** | Done | Returns the task to In Progress |
+| **Edit** | Any column | Loads the task into the form; save or cancel your changes |
+| **Delete** | Any column | Removes the task after you confirm |
+
+---
+
+## Weights and Progress
+
+Every task carries a weight: its share of the whole project.
+
+```
+progress = done weight ÷ total weight × 100
+```
+
+| Rule | Behavior |
+|---|---|
+| Range | Each weight is a whole number from 1 to 100 |
+| Limit | A task cannot use more weight than what is still available |
+| Hint | The line under the form shows the remaining weight, and turns red if an import pushes the total over 100% |
+
+---
+
+## Data and Privacy
+
+| Topic | Details |
+|---|---|
+| Storage | Tasks are kept in your browser's local storage, on your device only |
+| Backup | Auto-save is a convenience, not a backup. Export JSON regularly |
+| Sync | None. Move a project between devices with the exported JSON file |
+| Network | No analytics, no cookies, no external calls |
+
+---
+
+## JSON Format
+
+```json
+{
+  "version": 1,
+  "project": {
+    "name": "Garage",
+    "updated_at": "2026-11-17T09:30:00.000Z"
+  },
+  "tasks": [
+    {
+      "id": "m3k9x2ab",
+      "title": "Design the landing page",
+      "assignee": "Sam",
+      "weight": 40,
+      "status": "done"
+    }
+  ]
+}
+```
+
+| Import check | Behavior |
+|---|---|
+| Missing `tasks` list | File is rejected |
+| Newer `version` than the app supports | File is rejected |
+| No `version` field (older exports) | File is accepted |
+| Missing title or assignee, weight outside 1 to 100, duplicate id | Task is skipped and counted in the result message |
+
+When the board already has tasks, importing offers **Merge** (add tasks, update matching ids), **Replace all**, or **Cancel**.
+
+---
+
+## Keyboard Shortcuts
+
+| Keys | Action |
+|---|---|
+| `Enter` | Add or save the task from the form, or run a terminal command |
+| `Esc` | Cancel editing a task, or close a confirmation dialog |
+| `Tab` | Move between fields and buttons |
+
+---
+
+## Desktop App
+
+**Garage Desktop** runs the hosted version in a native Windows window, with Export JSON saving through the system save dialog. See [garage-desktop](https://github.com/fouadsgarage/garage-desktop) for downloads.
 
 ---
 
@@ -77,9 +174,10 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 | Layer | Technology |
 |---|---|
 | Markup | HTML5 |
-| Styling | CSS3 (custom properties, flexbox, media queries) |
+| Styling | CSS3 (custom properties, flexbox, grid, media queries) |
 | Logic | Vanilla JavaScript (ES6+) |
 | State | JSON |
+| Persistence | Browser local storage |
 | Hosting | GitHub Pages |
 | Typography | Ubuntu Font |
 | Build Tools | None |
