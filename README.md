@@ -16,6 +16,8 @@
 
 **Garage** is a lightweight, self-hosted project task board that runs **entirely in your browser** — no backend, no database, no build step. Your tasks are saved automatically in your browser, and you can export the whole project state to a single JSON file that lives alongside your project. Share it, version it with Git, and keep full control of your data.
 
+Prefer the keyboard? The built-in **terminal** works on the same board: add and move tasks, read reports, take backups and import or export, all from a command line.
+
 > **Explore GitHub. Understand projects. Stay in your terminal.**
 
 ---
@@ -46,12 +48,16 @@ The home page doubles as the **documentation**, with a table of contents coverin
 | **Weight Validation** | Weights stay between 1 and 100, with a live "remaining weight" hint and no way to go over 100% |
 | **Auto Progress** | Project completion calculated automatically from task weights |
 | **Auto-Save** | Tasks are saved in your browser after every change, so a reload loses nothing |
-| **Task History** | Every task records `created_at`, `started_at`, `completed_at`, and `reopened_at` timestamps — the foundation for a future burndown chart |
+| **Task History** | Every task records `created_at`, `started_at`, `completed_at`, and `reopened_at` timestamps, used by the terminal `burndown` chart |
 | **JSON Export / Import** | Save and load project state as a single, versioned JSON file |
 | **Safe Import** | Merge, replace, or cancel when the board already has tasks; invalid tasks are skipped and counted |
 | **Reset Data** | One click clears all local data after a confirmation — useful for starting a fresh project |
+| **Full Terminal** | Create, edit, move and delete tasks, read reports (`status`, `weights`, `overdue`, `who`, `find`, `burndown`), and run `export`, `import`, `reset`, `backup` and `restore` |
+| **Smart Command Parser** | Quoted values, `--options`, `@assignee` mentions, and tasks addressed by `#number` or id prefix |
+| **Confirmed Deletes** | `rm`, `reset` and `restore` ask `[y/N]` inside the terminal; `-y` skips the question |
+| **Local Backups** | Save named snapshots of the board in your browser (last 10 kept) and restore any of them |
+| **Burndown Chart** | A text chart of the weight still remaining per day, built from task history |
 | **Built-in Documentation** | The home page is a full user guide with a sticky table of contents |
-| **Terminal Commands** | `help`, `clear`, `version` — built-in terminal for power users |
 | **Share Button** | Copy the page URL to your clipboard instantly |
 | **GitHub Pages Ready** | Deploy in one click — no server required |
 | **Fully Responsive** | Works on desktop, tablet, and mobile |
@@ -80,8 +86,8 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 ```
 1. Open Garage in your browser
 2. Add tasks and assign weights (plus optional description, due date, priority, and tags)
-3. Move tasks across the board by drag & drop or with the action buttons (saved automatically)
-4. Click "Export JSON" → project-status-YYYY-MM-DD.json
+3. Move tasks across the board by drag & drop, with the action buttons, or from the terminal (saved automatically)
+4. Click "Export JSON" (or run `export`) → project-status-YYYY-MM-DD.json
 5. Commit the file to your project repo
 6. To view or update, import the latest JSON (merge or replace)
 ```
@@ -102,7 +108,7 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 | **Delete** | Any column | Removes the task after you confirm |
 | **Drag & Drop** | Any column | Move the card onto another column to change its status |
 
-Each task card also shows its priority, optional due date, description, and tags, so the whole context lives on the board.
+Each task card also shows its priority, optional due date, description, and tags, so the whole context lives on the board. Every one of these actions is also available from the [terminal](#terminal-commands).
 
 ---
 
@@ -113,6 +119,8 @@ Each task card also shows its priority, optional due date, description, and tags
 | **Search box** | Above the board | Live filter across title, assignee, description, due date, priority, and tags |
 | **Assignee filter** | Above the board | Show only tasks assigned to one person |
 | **Work per assignee** | Below the filters | A bar per person showing their share of total weight, how many tasks they have done, and their completion percentage |
+
+In the terminal, `find <text>`, `list @name` and `who` do the same jobs.
 
 ---
 
@@ -130,6 +138,8 @@ progress = done weight ÷ total weight × 100
 | Limit | A task cannot use more weight than what is still available |
 | Hint | The line under the form shows the remaining weight, and turns red if an import pushes the total over 100% |
 
+In the terminal, `status` shows the progress bar and `weights` shows the weight used and remaining.
+
 ---
 
 ## Task History
@@ -139,11 +149,11 @@ Every task records the four key moments of its lifecycle, saved in the JSON expo
 | Field | Meaning |
 |---|---|
 | `created_at` | When the task was created |
-| `started_at` | When it was first moved to In Progress |
+| `started_at` | When it was last moved to In Progress |
 | `completed_at` | When it was last marked Done |
 | `reopened_at` | When a Done task was reopened |
 
-These timestamps are the foundation for a future **burndown chart** built from the exported JSON.
+`show <task>` prints a task's history, and `burndown` turns these timestamps into a chart of the weight still remaining for each day.
 
 ---
 
@@ -153,8 +163,9 @@ These timestamps are the foundation for a future **burndown chart** built from t
 |---|---|
 | Storage | Tasks are kept in your browser's local storage, on your device only |
 | Backup | Auto-save is a convenience, not a backup. Export JSON regularly |
+| Local backups | `backup` saves snapshots in the same browser storage, so clearing site data removes them too |
 | Sync | None. Move a project between devices with the exported JSON file |
-| Reset | The **Reset data** button wipes every task from this browser after a confirmation |
+| Reset | The **Reset data** button and the `reset` command wipe every task from this browser after a confirmation. Local backups are kept |
 | Network | No analytics, no cookies, no external calls |
 
 ---
@@ -198,7 +209,7 @@ These timestamps are the foundation for a future **burndown chart** built from t
 | Missing title or assignee, weight outside 1 to 100, duplicate id | Task is skipped and counted in the result message |
 | Missing `description`, `due_date`, `priority`, `tags`, or `history` | Filled with safe defaults |
 
-When the board already has tasks, importing offers **Merge** (add tasks, update matching ids), **Replace all**, or **Cancel**.
+When the board already has tasks, importing offers **Merge** (add tasks, update matching ids), **Replace all**, or **Cancel**. In the terminal, answer `m`, `r`, or anything else to cancel.
 
 ---
 
@@ -206,7 +217,7 @@ When the board already has tasks, importing offers **Merge** (add tasks, update 
 
 | Keys | Action |
 |---|---|
-| `Enter` | Add or save the task from the form, or run a terminal command |
+| `Enter` | Add or save the task from the form, run a terminal command, or answer a terminal `[y/N]` question |
 | `Esc` | Cancel editing a task, or close a confirmation dialog |
 | `Tab` | Move between fields and buttons |
 
@@ -291,11 +302,83 @@ cd garage
 
 ## Terminal Commands
 
+The terminal works on the same saved tasks as the board. Type `help` for the list, or `help <command>` for usage and examples.
+
+### Referring to a task
+
+| Form | Example | Meaning |
+|---|---|---|
+| Number | `#3` or `3` | The position shown in the first column of `list` |
+| Id | `m3k9x2ab` or `m3k` | The full id or its start; ambiguous prefixes ask for more characters |
+
+### Writing commands
+
+| Syntax | Example |
+|---|---|
+| Quotes for values with spaces | `add "Fix the login page" @sam 20` |
+| Assignee | `@sam`, or `@"Sam Lee"` when it has a space |
+| Options | `--due 2026-11-25`, `--priority high`, `--tags a,b` |
+| Weight in `add` | The last number outside quotes, so `add Fix login @sam 20` works |
+
+### Tasks
+
 | Command | Description |
 |---|---|
-| `help` | Show available commands |
+| `add "Title" @name 20` | Create a task. Options: `--due`, `--priority`, `--tags`, `--desc` |
+| `list [status] [@name]` | List tasks. Filters: `todo`, `in_progress`, `done`, `@name`, `--priority`, `--tag` |
+| `start <task>` | Move a To Do task to In Progress |
+| `done <task>` | Mark an In Progress task as Done |
+| `back <task>` | Return an In Progress task to To Do |
+| `reopen <task>` | Return a Done task to In Progress |
+| `edit <task> --weight 30` | Change fields: `--title`, `--assignee`, `--weight`, `--due`, `--priority`, `--tags`, `--desc` |
+| `rm <task>` | Delete after a `[y/N]` question (`-y` skips it) |
+| `show <task>` | Show every field and the task history |
+
+`start`, `done`, `back`, `reopen` and `rm` accept several tasks at once, for example `done 1 2 3`.
+
+### Reports
+
+| Command | Description |
+|---|---|
+| `status` | Progress bar and the tasks and weight in each column |
+| `weights` | Weight used and weight still available |
+| `overdue` | Tasks past their due date and not Done |
+| `who` | Work per assignee: share of weight and tasks done |
+| `find <text>` | Search title, assignee, description, due date, priority and tags |
+| `burndown` | Text chart of the weight remaining per day, from task history |
+
+### Data
+
+| Command | Description |
+|---|---|
+| `export` | Download the project as JSON |
+| `import` | Pick a JSON file; asks merge or replace if the board is not empty |
+| `reset` | Remove every task from this browser after `[y/N]`. Backups are kept |
+| `backup [label]` | Save a snapshot of the board (last 10 kept) |
+| `restore [n]` | List backups, or replace the board with backup `n` after `[y/N]` |
+| `backup --delete <n>` | Delete backup `n` |
+
+### Terminal
+
+| Command | Description |
+|---|---|
+| `help [command]` | Show available commands, or usage for one command |
 | `clear` | Clear the terminal |
 | `version` | Show Garage version |
+
+Aliases: `ls` (list), `progress` (status), `delete` (rm), `cls` (clear).
+
+### Example session
+
+```
+> add "Design landing page" @sam 40 --priority high --due 2026-11-25
+> add Build API @lee 35 --tags backend
+> start 1
+> done 1
+> status
+> backup before-launch
+> burndown
+```
 
 ---
 

@@ -530,6 +530,22 @@ main article .terminal .terminal-body .line.cmd {
     color: var(--gray-100);
 }
 
+main article .terminal .terminal-body .line.error {
+    color: var(--red-300);
+}
+
+main article .terminal .terminal-body .line.ok {
+    color: var(--green-500);
+}
+
+main article .terminal .terminal-body .line.dim {
+    color: var(--gray-500);
+}
+
+main article .terminal .terminal-body .line.row {
+    margin: 0;
+}
+
 main article .terminal .terminal-body code {
     color: var(--blue-300);
     background-color: rgba(96, 165, 250, 0.12);
