@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garage</title>
 
+    <script>
+        (function () {
+            var theme = null;
+            try { theme = localStorage.getItem('garage-theme'); } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
     <link rel="stylesheet" href="dashboard/assets/stylesheets/style.css">
 
     <script src="dashboard/assets/engines/engine.js" defer></script>
@@ -53,6 +64,26 @@
                 </svg>
                 Share
             </a>
+            <button type="button" id="theme-toggle" class="dp-flex ai-center jc-center" aria-label="Switch to dark theme" aria-pressed="false">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
         </nav>
     </header>
     <main class="docs">
@@ -68,6 +99,7 @@
                     <li><a href="#export-import">Export and import</a></li>
                     <li><a href="#terminal">Terminal</a></li>
                     <li><a href="#backups">Backups</a></li>
+                    <li><a href="#theme">Theme</a></li>
                     <li><a href="#share">Share</a></li>
                     <li><a href="#shortcuts">Keyboard shortcuts</a></li>
                     <li><a href="#faq">FAQ</a></li>
@@ -76,7 +108,7 @@
         </aside>
         <article>
             <section class="route">
-                <p>Garage / Docs</p>
+                <p><a href="/garage">Garage</a> / <a href="/garage" aria-current="page">Docs</a></p>
             </section>
             <section class="welcome-message">
                 <p>Documentation for Garage, a task board that runs entirely in your browser.</p>
@@ -93,6 +125,7 @@
                     <li><strong>JSON export and import:</strong> back up, version and move your project.</li>
                     <li><strong>Built-in terminal:</strong> manage tasks, read reports and handle backups from the command line.</li>
                     <li><strong>Local backups:</strong> save snapshots of the board in your browser and restore them later.</li>
+                    <li><strong>Light and dark theme:</strong> follows your system and can be switched from the header.</li>
                 </ul>
             </section>
 
@@ -653,6 +686,16 @@
                 <div class="note warning">
                     <p>Backups live in the same browser storage as your tasks. Clearing the site data removes both, so keep an exported JSON file in your repo as the real copy.</p>
                 </div>
+            </section>
+
+            <section class="doc" id="theme">
+                <h2>Theme</h2>
+                <p>Garage comes in a light and a dark theme. The first time you visit, it follows your system setting. Use the moon or sun button in the header to switch, and Garage remembers your choice in this browser.</p>
+                <ul>
+                    <li>Until you pick a theme yourself, Garage follows your system and updates when it changes.</li>
+                    <li>The terminal and code blocks stay dark in both themes.</li>
+                    <li>The choice is stored in this browser only, like your tasks.</li>
+                </ul>
             </section>
 
             <section class="doc" id="share">
