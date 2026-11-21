@@ -2,56 +2,136 @@
 @import url(./defaults.css);
 
 :root {
+    color-scheme: light;
+
     --ubuntu-font-family-083-L: ubuntu-font-family-083-L;
 
     --font-sans: var(--ubuntu-font-family-083-L), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 
-    --gray-50:  #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-    --gray-950: #030712;
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --muted: #f4f4f5;
+    --border: #e8e8ea;
+    --border-strong: #d4d4d8;
+    --text: #18181b;
+    --text-body: #27272a;
+    --text-2: #52525b;
+    --text-3: #71717a;
+    --text-4: #a1a1aa;
+    --faint: #d4d4d8;
 
-    --blue-50:  #eff6ff;
-    --blue-100: #dbeafe;
-    --blue-200: #bfdbfe;
-    --blue-300: #93c5fd;
-    --blue-400: #60a5fa;
-    --blue-500: #3b82f6;
-    --blue-600: #2563eb;
-    --blue-700: #1d4ed8;
-    --blue-800: #1e40af;
-    --blue-900: #1e3a8a;
-    --blue-950: #172554;
+    --ink: #18181b;
+    --ink-hover: #3f3f46;
+    --on-ink: #ffffff;
 
-    --green-500: #10b981;
-    --green-600: #059669;
-    --green-700: #047857;
+    --header-bg: rgba(250, 250, 250, 0.8);
+    --backdrop: rgba(9, 9, 11, 0.4);
 
-    --red-50:  #fef2f2;
-    --red-300: #fca5a5;
-    --red-600: #dc2626;
-    --red-700: #b91c1c;
+    --accent: #4f7bff;
+    --accent-ring: rgba(79, 123, 255, 0.16);
+    --accent-soft: #f0f5ff;
+    --accent-border: #d3e0ff;
+    --accent-line: #a3bdff;
+    --accent-text: #2d4fc4;
 
-    --green-50:  #ecfdf5;
-    --green-200: #a7f3d0;
+    --green: #22c55e;
+    --green-text: #15803d;
+    --green-soft: #f0fdf4;
+    --green-border: #bbf0cd;
 
-    --amber-50:  #fffbeb;
-    --amber-300: #fcd34d;
-    --amber-500: #f59e0b;
-    --amber-800: #92400e;
+    --red-text: #c93030;
+    --red-solid: #dc3a3a;
+    --red-hover: #b42828;
+    --red-soft: #fef5f5;
+    --red-border: #f5b5b5;
 
-    --content-width: 1120px;
+    --amber: #e8a317;
+    --amber-text: #8a5a0a;
+    --amber-soft: #fffaeb;
+    --amber-border: #f5d68a;
+
+    --code-bg: #09090b;
+    --code-text: #d4d4d8;
+    --code-border: #09090b;
+
+    --term-bg: #09090b;
+    --term-border: #27272a;
+    --term-text: #a1a1aa;
+    --term-cmd: #f4f4f5;
+    --term-dim: #52525b;
+    --term-error: #f87171;
+    --term-ok: #22c55e;
+    --term-accent: #7a9cff;
+    --term-code: #a3bdff;
+    --term-code-bg: rgba(122, 156, 255, 0.12);
+
+    --shadow-card: 0 4px 12px -4px rgba(9, 9, 11, 0.1);
+    --shadow-pop: 0 24px 48px -12px rgba(9, 9, 11, 0.25);
+    --shadow-toast: 0 8px 24px -6px rgba(9, 9, 11, 0.35);
+
+    --content-width: 1080px;
     --gutter: 24px;
     --control-h: 36px;
-    --ease: 0.15s ease;
+    --radius: 10px;
+    --radius-sm: 7px;
+    --ease: 0.18s ease;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0b0b0d;
+    --surface: #131316;
+    --muted: #1a1a1e;
+    --border: #26262b;
+    --border-strong: #3a3a41;
+    --text: #f4f4f5;
+    --text-body: #e4e4e7;
+    --text-2: #a1a1aa;
+    --text-3: #8b8b94;
+    --text-4: #66666e;
+    --faint: #3a3a41;
+
+    --ink: #f4f4f5;
+    --ink-hover: #d4d4d8;
+    --on-ink: #09090b;
+
+    --header-bg: rgba(11, 11, 13, 0.8);
+    --backdrop: rgba(0, 0, 0, 0.6);
+
+    --accent: #7a9cff;
+    --accent-ring: rgba(122, 156, 255, 0.22);
+    --accent-soft: rgba(122, 156, 255, 0.1);
+    --accent-border: rgba(122, 156, 255, 0.3);
+    --accent-line: rgba(122, 156, 255, 0.55);
+    --accent-text: #a3bdff;
+
+    --green-text: #4ade80;
+    --green-soft: rgba(34, 197, 94, 0.1);
+    --green-border: rgba(34, 197, 94, 0.3);
+
+    --red-text: #f87171;
+    --red-solid: #dc3a3a;
+    --red-hover: #ef4444;
+    --red-soft: rgba(248, 113, 113, 0.1);
+    --red-border: rgba(248, 113, 113, 0.3);
+
+    --amber: #f59e0b;
+    --amber-text: #fbbf24;
+    --amber-soft: rgba(251, 191, 36, 0.1);
+    --amber-border: rgba(251, 191, 36, 0.3);
+
+    --code-bg: #08080a;
+    --code-text: #d4d4d8;
+    --code-border: #26262b;
+
+    --term-bg: #08080a;
+    --term-border: #26262b;
+
+    --shadow-card: 0 6px 16px -6px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
+    --shadow-toast: 0 8px 24px -6px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -71,24 +151,29 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: var(--gray-50);
-    color: var(--gray-800);
+    background-color: var(--bg);
+    color: var(--text-body);
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
 }
 
 a:focus-visible,
 button:focus-visible,
 .import-label:focus-within {
-    outline: 2px solid var(--blue-500);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
 header {
-    background-color: white;
-    border-bottom: 1px solid var(--gray-200);
-    padding: 12px max(var(--gutter), calc((100% - var(--content-width)) / 2 + var(--gutter)));
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--header-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px max(var(--gutter), calc((100% - var(--content-width)) / 2 + var(--gutter)));
 }
 
 header .brandmark {
@@ -96,46 +181,66 @@ header .brandmark {
 }
 
 header .brandmark .brand-logo {
-    color: var(--blue-600);
+    color: var(--text);
     margin: 0 8px 0 0;
     flex-shrink: 0;
 }
 
 header .brandmark h1 {
-    color: var(--gray-900);
-    font-size: 18px;
+    color: var(--text);
+    font-size: 16px;
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
 }
 
 header nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     margin-left: auto;
 }
 
-header nav a {
+header nav a,
+header nav button {
     gap: 6px;
     text-decoration: none;
-    color: var(--gray-700);
+    color: var(--text-2);
     font-size: 13px;
     font-weight: 500;
-    background-color: white;
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
     padding: 6px 12px;
-    transition: background-color var(--ease), border-color var(--ease);
+    cursor: pointer;
+    transition: background-color var(--ease), color var(--ease);
 }
 
-header nav a svg {
+header nav a svg,
+header nav button svg {
     margin: 0;
-    color: var(--gray-500);
+    color: var(--text-4);
     flex-shrink: 0;
+    transition: color var(--ease);
 }
 
 header nav a#back-btn {
-    color: var(--gray-600);
+    color: var(--text-3);
+}
+
+header nav button {
+    padding: 7px;
+}
+
+header nav button .icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] header nav button .icon-sun {
+    display: none;
+}
+
+:root[data-theme="dark"] header nav button .icon-moon {
+    display: block;
 }
 
 main {
@@ -145,45 +250,58 @@ main {
 main article {
     max-width: var(--content-width);
     margin: 0 auto;
-    padding: 28px var(--gutter) 40px;
+    padding: 40px var(--gutter) 64px;
 }
 
 main article .route {
-    color: var(--gray-500);
+    color: var(--text-4);
     font-size: 13px;
-    margin: 0 0 20px 0;
+    margin: 0 0 24px 0;
+}
+
+main article .route a {
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color var(--ease);
+}
+
+main article .route a[aria-current="page"] {
+    color: var(--text);
+    font-weight: 500;
 }
 
 main article .welcome-message {
-    margin: 0 0 24px 0;
+    margin: 0 0 32px 0;
 }
 
 main article .welcome-message p {
-    color: var(--gray-700);
-    font-size: 17px;
+    color: var(--text);
+    font-size: 24px;
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
 }
 
 main article .guide {
-    margin: 0 0 24px 0;
-    background-color: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 20px;
+    margin: 0 0 32px 0;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
 }
 
 main article .guide h2 {
-    color: var(--gray-900);
+    color: var(--text);
     font-size: 15px;
     font-weight: 500;
-    margin: 0 0 16px 0;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px 0;
 }
 
 main article .guide .guide-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px 32px;
+    gap: 20px 40px;
 }
 
 main article .guide .guide-steps .step {
@@ -200,39 +318,41 @@ main article .guide .guide-steps .step .step-number {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--blue-50);
-    color: var(--blue-700);
-    border: 1px solid var(--blue-200);
+    background-color: var(--ink);
+    color: var(--on-ink);
     border-radius: 50%;
     font-size: 12px;
     font-weight: 500;
 }
 
 main article .guide .guide-steps .step p {
-    color: var(--gray-600);
+    color: var(--text-2);
     font-size: 14px;
     line-height: 1.6;
 }
 
 main article .guide .guide-steps .step p a {
-    color: var(--blue-600);
+    color: var(--text);
     font-weight: 500;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--ease);
 }
 
 main article .guide .guide-steps .step p strong {
-    color: var(--gray-900);
+    color: var(--text);
     font-weight: 500;
 }
 
 main.docs {
     display: flex;
     align-items: flex-start;
-    gap: 40px;
+    gap: 56px;
     width: 100%;
     max-width: var(--content-width);
     margin: 0 auto;
-    padding: 28px var(--gutter) 40px;
+    padding: 40px var(--gutter) 64px;
 }
 
 main.docs article {
@@ -245,15 +365,15 @@ main.docs article {
 
 main.docs .docs-nav {
     position: sticky;
-    top: 24px;
-    flex: 0 0 200px;
+    top: 88px;
+    flex: 0 0 188px;
 }
 
 main.docs .docs-nav h2 {
-    color: var(--gray-500);
+    color: var(--text-4);
     font-size: 12px;
     font-weight: 500;
-    margin: 0 0 8px 14px;
+    margin: 0 0 10px 14px;
 }
 
 main.docs .docs-nav ul {
@@ -262,70 +382,77 @@ main.docs .docs-nav ul {
 
 main.docs .docs-nav a {
     display: block;
-    padding: 6px 12px;
-    border-left: 2px solid var(--gray-200);
-    color: var(--gray-600);
+    padding: 6px 14px;
+    border-left: 1px solid var(--border);
+    color: var(--text-3);
     font-size: 13px;
     text-decoration: none;
     transition: color var(--ease), border-color var(--ease);
 }
 
 main.docs .docs-nav a.active {
-    color: var(--blue-700);
-    border-left-color: var(--blue-600);
+    color: var(--text);
+    border-left-color: var(--text);
     font-weight: 500;
 }
 
 main article .doc {
-    margin: 0 0 40px 0;
-    scroll-margin-top: 24px;
+    margin: 0 0 56px 0;
+    scroll-margin-top: 88px;
 }
 
 main article .doc h2 {
-    color: var(--gray-900);
-    font-size: 20px;
+    color: var(--text);
+    font-size: 22px;
     font-weight: 500;
-    letter-spacing: -0.01em;
-    margin: 0 0 14px 0;
-    padding: 0 0 8px 0;
-    border-bottom: 1px solid var(--gray-200);
+    letter-spacing: -0.025em;
+    margin: 0 0 16px 0;
+    padding: 0;
 }
 
 main article .doc h3 {
-    color: var(--gray-900);
+    color: var(--text);
     font-size: 15px;
     font-weight: 500;
-    margin: 24px 0 8px 0;
+    letter-spacing: -0.01em;
+    margin: 28px 0 8px 0;
 }
 
 main article .doc p {
-    color: var(--gray-600);
+    color: var(--text-2);
     font-size: 14px;
-    line-height: 1.7;
-    margin: 0 0 12px 0;
+    line-height: 1.75;
+    margin: 0 0 14px 0;
 }
 
 main article .doc ul {
-    color: var(--gray-600);
+    color: var(--text-2);
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.75;
     padding: 0 0 0 20px;
-    margin: 0 0 12px 0;
+    margin: 0 0 14px 0;
 }
 
 main article .doc li {
     margin: 0 0 4px 0;
 }
 
+main article .doc li::marker {
+    color: var(--faint);
+}
+
 main article .doc strong {
-    color: var(--gray-900);
+    color: var(--text);
     font-weight: 500;
 }
 
 main article .doc a {
-    color: var(--blue-600);
+    color: var(--text);
     font-weight: 500;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--ease);
 }
 
 main article .doc code,
@@ -335,50 +462,49 @@ main article .doc kbd {
 }
 
 main article .doc code {
-    color: var(--gray-800);
+    color: var(--text-body);
     font-size: 12.5px;
-    background-color: var(--gray-100);
-    border: 1px solid var(--gray-200);
-    border-radius: 4px;
-    padding: 1px 6px;
+    background-color: var(--muted);
+    border-radius: 5px;
+    padding: 2px 6px;
 }
 
 main article .doc pre {
-    background-color: var(--gray-900);
-    color: var(--gray-300);
-    border-radius: 8px;
-    padding: 16px;
-    margin: 0 0 16px 0;
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin: 0 0 20px 0;
     overflow-x: auto;
     font-size: 13px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 main article .doc pre code {
     background-color: transparent;
     color: inherit;
-    border: 0;
     border-radius: 0;
     padding: 0;
     font-size: inherit;
 }
 
 main article .doc kbd {
-    color: var(--gray-700);
+    color: var(--text-2);
     font-size: 12px;
-    background-color: white;
-    border: 1px solid var(--gray-300);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
     border-bottom-width: 2px;
-    border-radius: 4px;
+    border-radius: 5px;
     padding: 1px 6px;
 }
 
 main article .doc .table-wrap {
     overflow-x: auto;
-    background-color: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    margin: 0 0 16px 0;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: 0 0 20px 0;
 }
 
 main article .doc table {
@@ -388,20 +514,19 @@ main article .doc table {
 }
 
 main article .doc th {
-    background-color: var(--gray-50);
-    color: var(--gray-600);
+    color: var(--text-3);
     font-weight: 500;
     text-align: left;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--gray-200);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
     white-space: nowrap;
 }
 
 main article .doc td {
-    color: var(--gray-600);
+    color: var(--text-2);
     line-height: 1.6;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--gray-200);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--muted);
     vertical-align: top;
 }
 
@@ -410,33 +535,30 @@ main article .doc tr:last-child td {
 }
 
 main article .doc td:first-child {
-    color: var(--gray-900);
+    color: var(--text);
     white-space: nowrap;
 }
 
 main article .doc .note {
-    background-color: var(--blue-50);
-    border: 1px solid var(--blue-200);
-    border-left: 3px solid var(--blue-500);
-    border-radius: 6px;
-    padding: 12px 14px;
-    margin: 0 0 16px 0;
+    background-color: var(--muted);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin: 0 0 20px 0;
 }
 
 main article .doc .note p {
-    color: var(--blue-900);
+    color: var(--text-2);
     font-size: 13px;
     margin: 0;
 }
 
 main article .doc .note.warning {
-    background-color: var(--amber-50);
-    border-color: var(--amber-300);
-    border-left-color: var(--amber-500);
+    background-color: var(--amber-soft);
+    box-shadow: inset 2px 0 0 var(--amber);
 }
 
 main article .doc .note.warning p {
-    color: var(--amber-800);
+    color: var(--amber-text);
 }
 
 main article .doc .flow {
@@ -444,11 +566,11 @@ main article .doc .flow {
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    margin: 0 0 12px 0;
+    margin: 0 0 14px 0;
 }
 
 main article .doc .flow .flow-arrow {
-    color: var(--gray-400);
+    color: var(--faint);
     font-size: 14px;
 }
 
@@ -463,25 +585,25 @@ main article .doc .badge {
 }
 
 main article .doc .badge.todo {
-    color: var(--gray-700);
-    background-color: var(--gray-100);
-    border-color: var(--gray-300);
+    color: var(--text-2);
+    background-color: var(--muted);
+    border-color: var(--border);
 }
 
 main article .doc .badge.progress {
-    color: var(--blue-700);
-    background-color: var(--blue-50);
-    border-color: var(--blue-200);
+    color: var(--accent-text);
+    background-color: var(--accent-soft);
+    border-color: var(--accent-border);
 }
 
 main article .doc .badge.done {
-    color: var(--green-700);
-    background-color: var(--green-50);
-    border-color: var(--green-200);
+    color: var(--green-text);
+    background-color: var(--green-soft);
+    border-color: var(--green-border);
 }
 
 main article .doc .guide {
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
 }
 
 main article .doc .guide .guide-steps {
@@ -498,26 +620,26 @@ main article .terminal * {
 }
 
 main article .terminal {
-    background-color: var(--gray-900);
-    border: 1px solid var(--gray-800);
-    border-radius: 8px;
+    background-color: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: 12px;
     overflow: hidden;
     transition: border-color var(--ease), box-shadow var(--ease);
 }
 
 main article .terminal:focus-within {
-    border-color: var(--blue-500);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-ring);
 }
 
 main article .terminal .terminal-body {
-    padding: 16px;
-    min-height: 240px;
+    padding: 20px;
+    min-height: 260px;
     max-height: 60vh;
     overflow-y: auto;
-    color: var(--gray-400);
+    color: var(--term-text);
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 main article .terminal .terminal-body .line {
@@ -527,19 +649,19 @@ main article .terminal .terminal-body .line {
 }
 
 main article .terminal .terminal-body .line.cmd {
-    color: var(--gray-100);
+    color: var(--term-cmd);
 }
 
 main article .terminal .terminal-body .line.error {
-    color: var(--red-300);
+    color: var(--term-error);
 }
 
 main article .terminal .terminal-body .line.ok {
-    color: var(--green-500);
+    color: var(--term-ok);
 }
 
 main article .terminal .terminal-body .line.dim {
-    color: var(--gray-500);
+    color: var(--term-dim);
 }
 
 main article .terminal .terminal-body .line.row {
@@ -547,37 +669,36 @@ main article .terminal .terminal-body .line.row {
 }
 
 main article .terminal .terminal-body code {
-    color: var(--blue-300);
-    background-color: rgba(96, 165, 250, 0.12);
-    border-radius: 3px;
+    color: var(--term-code);
+    background-color: var(--term-code-bg);
+    border-radius: 4px;
     padding: 1px 6px;
 }
 
 main article .terminal .terminal-input {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    border-top: 1px solid var(--gray-800);
-    background-color: rgba(255, 255, 255, 0.03);
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid var(--term-border);
 }
 
 main article .terminal .terminal-input .prompt {
-    color: var(--blue-400);
+    color: var(--term-accent);
     font-weight: 700;
 }
 
 main article .terminal .terminal-input input {
     width: 100%;
     background-color: transparent;
-    color: var(--gray-100);
-    caret-color: var(--blue-400);
+    color: var(--term-cmd);
+    caret-color: var(--term-accent);
     font-size: 13px;
     outline: none;
 }
 
 main article .terminal .terminal-input input::placeholder {
-    color: var(--gray-600);
+    color: var(--term-dim);
 }
 
 main article .tasks-board {
@@ -585,35 +706,35 @@ main article .tasks-board {
 }
 
 main article .tasks-board .board-header {
-    margin: 0 0 20px 0;
+    margin: 0 0 28px 0;
 }
 
 main article .tasks-board .board-header h2 {
-    color: var(--gray-900);
-    font-size: 18px;
+    color: var(--text);
+    font-size: 22px;
     font-weight: 500;
-    letter-spacing: -0.01em;
-    margin: 0 0 12px 0;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px 0;
 }
 
 main article .tasks-board .board-header .progress-bar {
     width: 100%;
-    height: 8px;
-    background-color: var(--gray-200);
+    height: 4px;
+    background-color: var(--border);
     border-radius: 999px;
     overflow: hidden;
-    margin: 0 0 6px 0;
+    margin: 0 0 8px 0;
 }
 
 main article .tasks-board .board-header .progress-bar .progress-fill {
     height: 100%;
-    background-color: var(--blue-600);
+    background-color: var(--ink);
     border-radius: 999px;
-    transition: width 0.3s ease;
+    transition: width 0.4s ease;
 }
 
 main article .tasks-board .board-header .progress-text {
-    color: var(--gray-600);
+    color: var(--text-3);
     font-size: 13px;
     font-variant-numeric: tabular-nums;
 }
@@ -622,10 +743,11 @@ main article .tasks-board .task-create {
     display: flex;
     gap: 8px;
     margin: 0 0 8px 0;
-    background-color: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 12px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px;
+    transition: background-color var(--ease), border-color var(--ease);
 }
 
 main article .tasks-board .task-create input,
@@ -633,13 +755,13 @@ main article .tasks-board .task-create select {
     flex: 1 1 0;
     min-width: 0;
     height: var(--control-h);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
     font-size: 13px;
-    color: var(--gray-900);
-    background-color: white;
-    transition: border-color var(--ease), box-shadow var(--ease);
+    color: var(--text);
+    background-color: var(--muted);
+    transition: border-color var(--ease), background-color var(--ease), box-shadow var(--ease);
 }
 
 main article .tasks-board .task-create input[name="title"] {
@@ -651,22 +773,23 @@ main article .tasks-board .task-create input[name="weight"] {
 }
 
 main article .tasks-board .task-create input::placeholder {
-    color: var(--gray-400);
+    color: var(--text-4);
 }
 
 main article .tasks-board .task-create input:focus,
 main article .tasks-board .task-create select:focus {
     outline: none;
-    border-color: var(--blue-500);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background-color: var(--surface);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ring);
 }
 
 main article .tasks-board .task-create button {
     height: var(--control-h);
-    background-color: var(--blue-600);
-    color: white;
-    border-radius: 5px;
-    padding: 0 16px;
+    background-color: var(--ink);
+    color: var(--on-ink);
+    border-radius: var(--radius-sm);
+    padding: 0 18px;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -675,25 +798,25 @@ main article .tasks-board .task-create button {
 }
 
 main article .tasks-board .task-create.editing {
-    background-color: var(--blue-50);
-    border-color: var(--blue-300);
+    background-color: var(--accent-soft);
+    border-color: var(--accent-border);
 }
 
 main article .tasks-board .task-create button.btn-cancel {
-    background-color: white;
-    color: var(--gray-700);
-    border: 1px solid var(--gray-300);
+    background-color: transparent;
+    color: var(--text-2);
+    border: 1px solid var(--border-strong);
 }
 
 main article .tasks-board .task-extra {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin: 0 0 20px 0;
-    background-color: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 12px;
+    margin: 0 0 28px 0;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px;
 }
 
 main article .tasks-board .task-extra input,
@@ -701,13 +824,13 @@ main article .tasks-board .task-extra select {
     flex: 1 1 180px;
     min-width: 0;
     height: var(--control-h);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
     font-size: 13px;
-    color: var(--gray-900);
-    background-color: white;
-    transition: border-color var(--ease), box-shadow var(--ease);
+    color: var(--text);
+    background-color: var(--muted);
+    transition: border-color var(--ease), background-color var(--ease), box-shadow var(--ease);
 }
 
 main article .tasks-board .task-extra input[type="date"] {
@@ -719,20 +842,21 @@ main article .tasks-board .task-extra select {
 }
 
 main article .tasks-board .task-extra input::placeholder {
-    color: var(--gray-400);
+    color: var(--text-4);
 }
 
 main article .tasks-board .task-extra input:focus,
 main article .tasks-board .task-extra select:focus {
     outline: none;
-    border-color: var(--blue-500);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background-color: var(--surface);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ring);
 }
 
 main article .tasks-board .task-filters {
     display: flex;
     gap: 8px;
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
 }
 
 main article .tasks-board .task-filters input,
@@ -740,12 +864,12 @@ main article .tasks-board .task-filters select {
     flex: 1 1 0;
     min-width: 0;
     height: var(--control-h);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 0 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
     font-size: 13px;
-    color: var(--gray-900);
-    background-color: white;
+    color: var(--text);
+    background-color: var(--surface);
     transition: border-color var(--ease), box-shadow var(--ease);
 }
 
@@ -754,38 +878,38 @@ main article .tasks-board .task-filters select {
 }
 
 main article .tasks-board .task-filters input::placeholder {
-    color: var(--gray-400);
+    color: var(--text-4);
 }
 
 main article .tasks-board .task-filters input:focus,
 main article .tasks-board .task-filters select:focus {
     outline: none;
-    border-color: var(--blue-500);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ring);
 }
 
 main article .tasks-board .assignee-summary {
-    margin: 0 0 16px 0;
+    margin: 0 0 24px 0;
 }
 
 main article .tasks-board .assignee-summary h3 {
-    color: var(--gray-700);
+    color: var(--text-3);
     font-size: 13px;
     font-weight: 500;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
 }
 
 main article .tasks-board .assignee-summary .assignee-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 0 0 6px 0;
+    gap: 12px;
+    margin: 0 0 8px 0;
     font-size: 12px;
 }
 
 main article .tasks-board .assignee-summary .assignee-name {
     flex: 0 0 120px;
-    color: var(--gray-800);
+    color: var(--text-body);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -794,8 +918,8 @@ main article .tasks-board .assignee-summary .assignee-name {
 
 main article .tasks-board .assignee-summary .assignee-bar {
     flex: 1 1 0;
-    height: 6px;
-    background-color: var(--gray-200);
+    height: 4px;
+    background-color: var(--border);
     border-radius: 999px;
     overflow: hidden;
 }
@@ -803,78 +927,89 @@ main article .tasks-board .assignee-summary .assignee-bar {
 main article .tasks-board .assignee-summary .assignee-bar span {
     display: block;
     height: 100%;
-    background-color: var(--blue-500);
+    background-color: var(--ink);
     border-radius: 999px;
-    transition: width 0.3s ease;
+    transition: width 0.4s ease;
 }
 
 main article .tasks-board .assignee-summary .assignee-value {
     flex: 0 0 auto;
-    color: var(--gray-600);
+    color: var(--text-3);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
 main article .tasks-board .weight-hint {
-    margin: 0 0 16px 2px;
-    color: var(--gray-600);
+    margin: 0 0 20px 2px;
+    color: var(--text-3);
     font-size: 13px;
     font-variant-numeric: tabular-nums;
 }
 
 main article .tasks-board .weight-hint.over {
-    color: var(--red-600);
+    color: var(--red-text);
 }
 
 main article .tasks-board .board-columns {
     display: flex;
-    gap: 16px;
+    gap: 20px;
 }
 
 main article .tasks-board .board-columns .column {
     flex: 1;
     min-width: 0;
-    min-height: 200px;
-    background-color: var(--gray-100);
-    border: 1px solid var(--gray-200);
-    border-top: 3px solid var(--gray-400);
-    border-radius: 8px;
-    padding: 12px;
+    min-height: 220px;
+    background-color: var(--muted);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 14px;
     transition: background-color var(--ease), border-color var(--ease);
 }
 
 main article .tasks-board .board-columns .column.drag-over {
-    background-color: var(--blue-50);
-    border-color: var(--blue-400);
-}
-
-main article .tasks-board .board-columns .column[data-status="in_progress"] {
-    border-top-color: var(--blue-500);
-}
-
-main article .tasks-board .board-columns .column[data-status="done"] {
-    border-top-color: var(--green-500);
+    background-color: var(--accent-soft);
+    border-color: var(--accent-line);
 }
 
 main article .tasks-board .board-columns .column h3 {
-    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-2);
     font-size: 13px;
     font-weight: 500;
-    margin: 0 0 12px 0;
+    margin: 0 0 14px 2px;
+}
+
+main article .tasks-board .board-columns .column h3::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    background-color: var(--text-4);
+    border-radius: 50%;
+}
+
+main article .tasks-board .board-columns .column[data-status="in_progress"] h3::before {
+    background-color: var(--accent);
+}
+
+main article .tasks-board .board-columns .column[data-status="done"] h3::before {
+    background-color: var(--green);
 }
 
 main article .tasks-board .board-columns .column .task-card {
-    background-color: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    padding: 12px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
     margin: 0 0 8px 0;
     cursor: grab;
     transition: border-color var(--ease), box-shadow var(--ease), opacity var(--ease);
 }
 
 main article .tasks-board .board-columns .column .task-card.dragging {
-    opacity: 0.45;
+    opacity: 0.4;
     cursor: grabbing;
 }
 
@@ -883,35 +1018,37 @@ main article .tasks-board .board-columns .column .task-card:last-child {
 }
 
 main article .tasks-board .board-columns .column .task-card.done {
-    background-color: var(--gray-50);
+    background-color: transparent;
+    border-color: var(--border);
 }
 
 main article .tasks-board .board-columns .column .task-card.done .task-title {
-    color: var(--gray-500);
+    color: var(--text-4);
     text-decoration: line-through;
-    text-decoration-color: var(--gray-300);
+    text-decoration-color: var(--faint);
 }
 
 main article .tasks-board .board-columns .column .task-card .task-title {
-    color: var(--gray-900);
+    color: var(--text);
     font-size: 14px;
     font-weight: 500;
+    letter-spacing: -0.01em;
     line-height: 1.4;
     margin: 0 0 4px 0;
     overflow-wrap: anywhere;
 }
 
 main article .tasks-board .board-columns .column .task-card .task-meta {
-    color: var(--gray-500);
+    color: var(--text-4);
     font-size: 12px;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
 }
 
 main article .tasks-board .board-columns .column .task-card .task-description {
-    color: var(--gray-600);
+    color: var(--text-3);
     font-size: 12px;
-    line-height: 1.5;
-    margin: 0 0 8px 0;
+    line-height: 1.6;
+    margin: 0 0 10px 0;
     overflow-wrap: anywhere;
 }
 
@@ -919,7 +1056,7 @@ main article .tasks-board .board-columns .column .task-card .task-badges {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
 }
 
 main article .tasks-board .board-columns .column .task-card .task-priority {
@@ -934,35 +1071,35 @@ main article .tasks-board .board-columns .column .task-card .task-priority {
 }
 
 main article .tasks-board .board-columns .column .task-card .priority-low {
-    color: var(--gray-600);
-    background-color: var(--gray-100);
-    border-color: var(--gray-300);
+    color: var(--text-3);
+    background-color: var(--bg);
+    border-color: var(--border);
 }
 
 main article .tasks-board .board-columns .column .task-card .priority-medium {
-    color: var(--blue-700);
-    background-color: var(--blue-50);
-    border-color: var(--blue-200);
+    color: var(--accent-text);
+    background-color: var(--accent-soft);
+    border-color: var(--accent-border);
 }
 
 main article .tasks-board .board-columns .column .task-card .priority-high {
-    color: var(--amber-800);
-    background-color: var(--amber-50);
-    border-color: var(--amber-300);
+    color: var(--amber-text);
+    background-color: var(--amber-soft);
+    border-color: var(--amber-border);
 }
 
 main article .tasks-board .board-columns .column .task-card .priority-urgent {
-    color: var(--red-700);
-    background-color: var(--red-50);
-    border-color: var(--red-300);
+    color: var(--red-text);
+    background-color: var(--red-soft);
+    border-color: var(--red-border);
 }
 
 main article .tasks-board .board-columns .column .task-card .task-due {
     display: inline-flex;
     align-items: center;
-    color: var(--gray-600);
-    background-color: var(--gray-100);
-    border: 1px solid var(--gray-300);
+    color: var(--text-3);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 999px;
     padding: 1px 8px;
     font-size: 11px;
@@ -971,27 +1108,26 @@ main article .tasks-board .board-columns .column .task-card .task-due {
 }
 
 main article .tasks-board .board-columns .column .task-card .task-due.overdue {
-    color: var(--red-700);
-    background-color: var(--red-50);
-    border-color: var(--red-300);
+    color: var(--red-text);
+    background-color: var(--red-soft);
+    border-color: var(--red-border);
 }
 
 main article .tasks-board .board-columns .column .task-card .task-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
 }
 
 main article .tasks-board .board-columns .column .task-card .task-tag {
     display: inline-block;
-    background-color: var(--gray-100);
-    color: var(--gray-600);
-    border: 1px solid var(--gray-200);
-    border-radius: 4px;
-    padding: 1px 6px;
+    background-color: var(--muted);
+    color: var(--text-3);
+    border-radius: 5px;
+    padding: 1px 7px;
     font-size: 11px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 main article .tasks-board .board-columns .column .task-card .btn-start,
@@ -999,31 +1135,31 @@ main article .tasks-board .board-columns .column .task-card .btn-success,
 main article .tasks-board .board-columns .column .task-card .btn-back,
 main article .tasks-board .board-columns .column .task-card .btn-edit,
 main article .tasks-board .board-columns .column .task-card .btn-delete {
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 5px 12px;
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color var(--ease), border-color var(--ease);
+    transition: background-color var(--ease), border-color var(--ease), color var(--ease);
 }
 
 main article .tasks-board .board-columns .column .task-card .btn-start,
 main article .tasks-board .board-columns .column .task-card .btn-back,
 main article .tasks-board .board-columns .column .task-card .btn-edit {
-    background-color: white;
-    color: var(--gray-700);
-    border: 1px solid var(--gray-300);
+    background-color: var(--surface);
+    color: var(--text-2);
+    border: 1px solid var(--border);
 }
 
 main article .tasks-board .board-columns .column .task-card .btn-success {
-    background-color: var(--green-600);
-    color: white;
+    background-color: var(--ink);
+    color: var(--on-ink);
 }
 
 main article .tasks-board .board-columns .column .task-card .btn-delete {
-    background-color: white;
-    color: var(--red-600);
-    border: 1px solid var(--gray-300);
+    background-color: transparent;
+    color: var(--text-3);
+    border: 1px solid transparent;
 }
 
 main article .tasks-board .board-columns .column .task-card .task-buttons {
@@ -1039,7 +1175,7 @@ main article .tasks-board .board-columns .column .task-card .btn-edit {
 main article .tasks-board .task-actions {
     display: flex;
     gap: 8px;
-    margin: 20px 0 0 0;
+    margin: 28px 0 0 0;
 }
 
 main article .tasks-board .task-actions button,
@@ -1048,43 +1184,45 @@ main article .tasks-board .task-actions .import-label {
     align-items: center;
     height: var(--control-h);
     margin: 0;
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     padding: 0 14px;
     font-size: 13px;
     font-weight: 500;
-    color: var(--gray-700);
-    background-color: white;
+    color: var(--text-2);
+    background-color: var(--surface);
     cursor: pointer;
     transition: background-color var(--ease), border-color var(--ease);
 }
 
 main article .tasks-board .task-actions button.btn-reset {
-    color: var(--red-600);
-    border-color: var(--red-300);
+    color: var(--red-text);
+    border-color: var(--border);
     margin-left: auto;
 }
 
 .dialog {
     margin: auto;
-    width: min(420px, calc(100vw - 32px));
-    background-color: white;
-    color: var(--gray-800);
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 12px 32px rgba(17, 24, 39, 0.2);
+    width: min(400px, calc(100vw - 32px));
+    background-color: var(--surface);
+    color: var(--text-body);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow-pop);
 }
 
 .dialog::backdrop {
-    background-color: rgba(17, 24, 39, 0.45);
+    background-color: var(--backdrop);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 }
 
 .dialog .dialog-message {
-    color: var(--gray-700);
+    color: var(--text-2);
     font-size: 14px;
-    line-height: 1.6;
-    margin: 0 0 20px 0;
+    line-height: 1.65;
+    margin: 0 0 24px 0;
     overflow-wrap: anywhere;
 }
 
@@ -1097,44 +1235,43 @@ main article .tasks-board .task-actions button.btn-reset {
 
 .dialog .dialog-actions button {
     height: var(--control-h);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0 16px;
     font-size: 13px;
     font-weight: 500;
-    color: var(--gray-700);
-    background-color: white;
+    color: var(--text-2);
+    background-color: var(--surface);
     cursor: pointer;
     transition: background-color var(--ease), border-color var(--ease);
 }
 
 .dialog .dialog-actions button.primary {
-    background-color: var(--blue-600);
-    border-color: var(--blue-600);
-    color: white;
+    background-color: var(--ink);
+    border-color: var(--ink);
+    color: var(--on-ink);
 }
 
 .dialog .dialog-actions button.danger {
-    background-color: var(--red-600);
-    border-color: var(--red-600);
-    color: white;
+    background-color: var(--red-solid);
+    border-color: var(--red-solid);
+    color: #ffffff;
 }
 
 footer {
     margin-top: auto;
-    padding: 16px;
-    background-color: white;
-    border-top: 1px solid var(--gray-200);
+    padding: 24px 16px;
+    border-top: 1px solid var(--border);
     text-align: center;
 }
 
 footer p {
-    color: var(--gray-500);
+    color: var(--text-4);
     font-size: 13px;
 }
 
 footer p a {
-    color: var(--blue-600);
+    color: var(--text-2);
     font-weight: 500;
     text-decoration: none;
     margin-left: 4px;
@@ -1144,18 +1281,18 @@ footer p a {
 .toast {
     position: fixed;
     left: 50%;
-    bottom: 24px;
+    bottom: 28px;
     z-index: 1000;
     width: max-content;
     max-width: calc(100vw - 32px);
     text-align: center;
     transform: translate(-50%, 8px);
-    background-color: var(--gray-900);
-    color: white;
+    background-color: var(--ink);
+    color: var(--on-ink);
     font-size: 13px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.2);
+    padding: 10px 18px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-toast);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -1167,83 +1304,96 @@ footer p a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-    header nav a:hover {
-        background-color: var(--gray-50);
-        border-color: var(--gray-400);
+    header nav a:hover,
+    header nav button:hover {
+        background-color: var(--muted);
+        color: var(--text);
+    }
+
+    header nav a:hover svg,
+    header nav button:hover svg {
+        color: var(--text-2);
+    }
+
+    main article .route a:hover {
+        color: var(--text);
+        text-decoration: underline;
+        text-underline-offset: 3px;
     }
 
     main article .guide .guide-steps .step p a:hover {
-        text-decoration: underline;
+        text-decoration-color: var(--text);
     }
 
     main article .tasks-board .task-create button:hover {
-        background-color: var(--blue-700);
+        background-color: var(--ink-hover);
     }
 
     main article .tasks-board .board-columns .column .task-card:hover {
-        border-color: var(--gray-300);
-        box-shadow: 0 2px 6px rgba(17, 24, 39, 0.08);
+        border-color: var(--border-strong);
+        box-shadow: var(--shadow-card);
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-start:hover,
     main article .tasks-board .board-columns .column .task-card .btn-back:hover,
     main article .tasks-board .board-columns .column .task-card .btn-edit:hover {
-        background-color: var(--gray-100);
-        border-color: var(--gray-400);
+        background-color: var(--muted);
+        border-color: var(--border-strong);
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-delete:hover {
-        background-color: var(--red-50);
-        border-color: var(--red-300);
+        background-color: var(--red-soft);
+        color: var(--red-text);
     }
 
     main article .tasks-board .task-create button.btn-cancel:hover {
-        background-color: var(--gray-50);
-        border-color: var(--gray-400);
+        background-color: var(--muted);
+        border-color: var(--text-4);
     }
 
     .dialog .dialog-actions button:hover {
-        background-color: var(--gray-50);
-        border-color: var(--gray-400);
+        background-color: var(--muted);
+        border-color: var(--border-strong);
     }
 
     .dialog .dialog-actions button.primary:hover {
-        background-color: var(--blue-700);
-        border-color: var(--blue-700);
+        background-color: var(--ink-hover);
+        border-color: var(--ink-hover);
     }
 
     .dialog .dialog-actions button.danger:hover {
-        background-color: var(--red-700);
-        border-color: var(--red-700);
+        background-color: var(--red-hover);
+        border-color: var(--red-hover);
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-success:hover {
-        background-color: var(--green-700);
+        background-color: var(--ink-hover);
     }
 
     main article .tasks-board .task-actions button:hover,
     main article .tasks-board .task-actions .import-label:hover {
-        background-color: var(--gray-50);
-        border-color: var(--gray-400);
+        background-color: var(--muted);
+        border-color: var(--border-strong);
     }
 
     main article .tasks-board .task-actions button.btn-reset:hover {
-        background-color: var(--red-50);
-        border-color: var(--red-300);
+        background-color: var(--red-soft);
+        border-color: var(--red-border);
     }
 
     main.docs .docs-nav a:hover {
-        color: var(--gray-900);
-        border-left-color: var(--gray-400);
+        color: var(--text);
+        border-left-color: var(--text-4);
     }
 
     main article .doc a:hover {
-        text-decoration: underline;
+        text-decoration-color: var(--text);
     }
 
     footer p a:hover {
-        color: var(--blue-700);
+        color: var(--text);
         text-decoration: underline;
+        text-underline-offset: 3px;
     }
 }
 
@@ -1254,6 +1404,10 @@ footer p a {
 
     header nav a {
         padding: 10px 14px;
+    }
+
+    header nav button {
+        padding: 11px;
     }
 
     main article .tasks-board .board-columns .column .task-card .btn-start,
@@ -1269,7 +1423,7 @@ footer p a {
     main.docs {
         flex-direction: column;
         align-items: stretch;
-        gap: 24px;
+        gap: 28px;
     }
 
     main.docs .docs-nav {
@@ -1289,14 +1443,16 @@ footer p a {
     }
 
     main.docs .docs-nav a {
-        background-color: white;
-        border: 1px solid var(--gray-200);
+        background-color: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 999px;
-        padding: 4px 12px;
+        padding: 4px 14px;
     }
 
     main.docs .docs-nav a.active {
-        border-color: var(--blue-600);
+        background-color: var(--ink);
+        border-color: var(--ink);
+        color: var(--on-ink);
     }
 }
 
@@ -1320,11 +1476,15 @@ footer p a {
     }
 
     main article {
-        padding-top: 20px;
+        padding-top: 28px;
+    }
+
+    main article .welcome-message p {
+        font-size: 20px;
     }
 
     main article .terminal .terminal-body {
-        min-height: 180px;
+        min-height: 200px;
     }
 
     main article .tasks-board .task-create,
