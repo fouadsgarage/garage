@@ -1,81 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Garage — Small Tools That Run in Your Browser</title>
+        <meta name="description" content="Garage is a collection of small browser-based tools: Garage Flow, a weighted task board with a built-in terminal, and Garage GYM, a home workout log. No account, no server.">
+        <meta name="author" content="Fouad Salehi">
+        <meta name="keywords" content="Garage, Garage Flow, Garage GYM, task board, workout tracker, offline tools, browser tools, Fouad Salehi">
+        <meta name="robots" content="index, follow">
+        <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
+        <link rel="canonical" href="https://fouadsgarage.github.io/">
+        <link rel="icon" href="favicon.ico" sizes="any">
+        <link rel="apple-touch-icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="dashboard/assets/stylesheets/style.css">
+        <script>
+            (function () {
+                var theme = null;
+                try { theme = localStorage.getItem('garage-theme'); } catch (e) {}
+                if (theme !== 'light' && theme !== 'dark') {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.dataset.theme = theme;
+            })();
+        </script>
 
-    <script src="dashboard/assets/engines/engine.js" defer></script>
-</head>
-<body>
-    <header class="dp-flex ai-center">
-        <div class="brandmark">
-            <h1>Dashboard</h1>
-        </div>
-        <nav class="dp-flex ai-center">
-            <a href="tasks.html" class="dp-flex ai-center jc-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        <link rel="stylesheet" href="dashboard/assets/stylesheets/style.css">
+        <script src="dashboard/assets/engines/engine.js" defer></script>
+    </head>
+    <body>
+        <header class="dp-flex ai-center">
+            <div class="brandmark dp-flex ai-center">
+                <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" aria-hidden="true">
+                    <path d="M112 400 V248 a144 144 0 0 1 288 0 V400 Z" fill="none" stroke="currentColor" stroke-width="28" stroke-linejoin="round"/>
+                    <rect x="160" y="280" width="192" height="120" fill="none" stroke="currentColor" stroke-width="20"/>
+                    <line x1="160" y1="320" x2="352" y2="320" stroke="currentColor" stroke-width="14" stroke-linecap="round"/>
+                    <line x1="160" y1="360" x2="352" y2="360" stroke="currentColor" stroke-width="14" stroke-linecap="round"/>
+                    <circle cx="176" cy="208" r="12" fill="currentColor"/>
+                    <circle cx="336" cy="208" r="12" fill="currentColor"/>
                 </svg>
-                Tasks
-            </a>
-            <a href="terminal.html" class="dp-flex ai-center jc-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="4 17 10 11 4 5"/>
-                    <line x1="12" y1="19" x2="20" y2="19"/>
-                </svg>
-                Terminal
-            </a>
-            <a href="" class="dp-flex ai-center jc-center" id="share-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="18" cy="5" r="3"/>
-                    <circle cx="6" cy="12" r="3"/>
-                    <circle cx="18" cy="19" r="3"/>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                </svg>
-                Share
-            </a>
-        </nav>
-    </header>
-    <main>
-        <article>
-            <section class="welcome-message">
-                <p>Welcome. Here you can see your tasks and move work forward.</p>
-            </section>
-            <section class="guide">
-                <h2>Getting Started</h2>
-                <div class="guide-steps">
-                    <div class="step">
-                        <span class="step-number">1</span>
-                        <p>Create tasks in the <a href="tasks.html">Tasks</a> page with title, assignee, and weight.</p>
+                <h1>Garage</h1>
+            </div>
+            <nav class="dp-flex ai-center">
+                <a href="https://github.com/fouadsgarage" target="_blank" rel="noopener" class="dp-flex ai-center jc-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    GitHub
+                </a>
+                <button type="button" id="theme-toggle" class="dp-flex ai-center jc-center" aria-label="Switch to dark theme" aria-pressed="false">
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <section class="welcome-message">
+                    <p>Small tools that run entirely in your browser.</p>
+                    <span>Garage is a growing collection of simple, fast apps. No account, no server and no build step. Your data stays on your device.</span>
+                </section>
+
+                <section class="projects" id="projects" aria-label="Projects">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <line x1="9" y1="3" x2="9" y2="21"/>
+                                <line x1="15" y1="3" x2="15" y2="21"/>
+                            </svg>
+                        </div>
+                        <h2>Garage Flow</h2>
+                        <p class="project-text">A task board for planning a project, assigning work and seeing how far along you are. Every task has a weight, so the progress bar always tells the truth.</p>
+                        <ul class="project-features">
+                            <li>Weighted tasks with a To Do, In Progress and Done board</li>
+                            <li>Built-in terminal with reports and burndown chart</li>
+                            <li>JSON export and import, plus local backups</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Tasks</span>
+                            <span class="project-tag">Terminal</span>
+                            <span class="project-tag">JSON</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="flow/tasks" class="btn-primary">Open app</a>
+                            <a href="flow" class="btn-secondary">Docs</a>
+                        </div>
                     </div>
-                    <div class="step">
-                        <span class="step-number">2</span>
-                        <p>Click <strong>Export JSON</strong> to download your project state.</p>
+
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M6.5 6.5v11"/>
+                                <path d="M17.5 6.5v11"/>
+                                <path d="M3 9v6"/>
+                                <path d="M21 9v6"/>
+                                <path d="M6.5 12h11"/>
+                            </svg>
+                        </div>
+                        <h2>Garage GYM</h2>
+                        <p class="project-text">A home training log that follows your workouts day by day. Add exercises, set the reps and tick off three sets as you go.</p>
+                        <ul class="project-features">
+                            <li>Day-by-day logs with a quick day selector</li>
+                            <li>Three-set checkboxes and a daily summary</li>
+                            <li>JSON export and import to keep your history</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Workouts</span>
+                            <span class="project-tag">Sets</span>
+                            <span class="project-tag">JSON</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="gym" class="btn-primary">Open app</a>
+                        </div>
                     </div>
-                    <div class="step">
-                        <span class="step-number">3</span>
-                        <p>Commit the JSON file to your project repo.</p>
+                </section>
+
+                <section class="highlights" aria-label="Principles">
+                    <div class="highlight">
+                        <h3>Local first</h3>
+                        <p>Everything is saved in your browser. Nothing is sent anywhere.</p>
                     </div>
-                    <div class="step">
-                        <span class="step-number">4</span>
-                        <p>To view or update, import the latest JSON back into Garage.</p>
+                    <div class="highlight">
+                        <h3>No account</h3>
+                        <p>Open a page and start working. There is nothing to sign up for.</p>
                     </div>
-                </div>
-            </section>
-        </article>
-        <!-- <aside></aside> -->
-    </main>
-    <footer></footer>
-</body>
+                    <div class="highlight">
+                        <h3>Yours to keep</h3>
+                        <p>Export your data as JSON and store it next to your code or notes.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+        <footer class="dp-flex ai-center jc-center">
+            <p>
+                &copy; 2026 Garage. All rights reserved.
+                <a href="https://github.com/fouadsgarage" target="_blank" rel="noopener">github.com/fouadsgarage</a>
+            </p>
+        </footer>
+    </body>
 </html>

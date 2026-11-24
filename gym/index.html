@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Garage GYM — Home Training Log</title>
+    <meta name="description" content="Garage GYM is a local home workout tracker with day-by-day logs, exercise names, three-set checkboxes and JSON export/import.">
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
+
+    <script>
+        (function () {
+            var theme = null;
+            try { theme = localStorage.getItem('garage-gym-theme'); } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
+    <link rel="stylesheet" href="dashboard/assets/stylesheets/style.css">
+    <script src="dashboard/assets/engines/engine.js" defer></script>
+</head>
+<body>
+    <header class="dp-flex ai-center">
+        <div class="brandmark dp-flex ai-center">
+            <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6.5 6.5v11"/>
+                <path d="M17.5 6.5v11"/>
+                <path d="M3 9v6"/>
+                <path d="M21 9v6"/>
+                <path d="M6.5 12h11"/>
+            </svg>
+            <h1>Garage GYM</h1>
+        </div>
+        <nav class="dp-flex ai-center">
+            <button type="button" id="theme-toggle" class="dp-flex ai-center jc-center" aria-label="Switch theme" aria-pressed="false">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <section class="welcome-message">
+                <p>Track your home workouts, one set at a time.</p>
+            </section>
+
+            <form id="create-form" class="workout-create" autocomplete="off">
+                <input type="text" id="name" name="name" placeholder="Exercise name (e.g. Push-ups)" required>
+                <input type="date" id="date" name="date" required>
+                <input type="number" id="reps" name="reps" placeholder="Reps" min="1" max="999">
+                <button type="submit">Add exercise</button>
+            </form>
+
+            <div class="day-bar">
+                <label for="day-select" class="day-label">Day</label>
+                <select id="day-select" class="day-select"></select>
+                <span id="day-meta" class="day-meta"></span>
+            </div>
+
+            <div class="workout-filters">
+                <input type="search" id="filter-text" placeholder="Search exercises">
+                <select id="filter-status">
+                    <option value="">All sets</option>
+                    <option value="0">No sets done</option>
+                    <option value="1">1 set done</option>
+                    <option value="2">2 sets done</option>
+                    <option value="3">3 sets done</option>
+                </select>
+            </div>
+
+            <p id="summary" class="workout-summary"></p>
+
+            <div class="table-wrap">
+                <table id="workout-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Exercise</th>
+                            <th>Reps</th>
+                            <th>Set 1</th>
+                            <th>Set 2</th>
+                            <th>Set 3</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <p id="empty-msg" class="empty-msg">No exercises for this day yet. Add one above to get started.</p>
+
+            <div class="workout-actions">
+                <button type="button" id="export-btn">Export JSON</button>
+                <label class="import-label" for="import-input">
+                    Import JSON
+                    <input type="file" id="import-input" accept="application/json,.json" hidden>
+                </label>
+                <button type="button" id="reset-btn" class="btn-reset">Reset data</button>
+            </div>
+        </article>
+    </main>
+
+    <footer class="dp-flex ai-center jc-center">
+        <p>&copy; 2026 Garage GYM. All rights reserved. <a href="https://github.com/fouadsgarage" target="_blank" rel="noopener">github.com/fouadsgarage</a></p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <dialog id="confirm-dialog" class="dialog">
+        <p class="dialog-message"></p>
+        <div class="dialog-actions">
+            <button type="button" data-action="cancel">Cancel</button>
+            <button type="button" data-action="confirm" class="danger">Confirm</button>
+        </div>
+    </dialog>
+</body>
+</html>
