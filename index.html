@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>Garage — Local Task Board with Weighted Tasks & Terminal</title>
-        <meta name="description" content="Garage is a browser-based task board with weighted progress tracking, a built-in terminal, JSON export/import and local backups. No account, no server, no build step.">
+        <title>Garage — Small Tools That Run in Your Browser</title>
+        <meta name="description" content="Garage is a collection of small browser-based tools: Garage Flow, a weighted task board with a built-in terminal, and Garage GYM, a home workout log. No account, no server.">
         <meta name="author" content="Fouad Salehi">
-        <meta name="keywords" content="Garage, task board, kanban, weighted tasks, progress tracking, terminal, JSON export, offline task manager, browser task manager, project management, Fouad Salehi">
+        <meta name="keywords" content="Garage, Garage Flow, Garage GYM, task board, workout tracker, offline tools, browser tools, Fouad Salehi">
         <meta name="robots" content="index, follow">
         <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
         <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
-        <link rel="canonical" href="https://fouadsgarage.github.io/garage/">
+        <link rel="canonical" href="https://fouadsgarage.github.io/">
         <link rel="icon" href="favicon.ico" sizes="any">
         <link rel="apple-touch-icon" href="favicon.ico">
 
@@ -39,38 +39,16 @@
                     <circle cx="176" cy="208" r="12" fill="currentColor"/>
                     <circle cx="336" cy="208" r="12" fill="currentColor"/>
                 </svg>
-                <h1>Dashboard</h1>
+                <h1>Garage</h1>
             </div>
             <nav class="dp-flex ai-center">
-                <a href="tasks" class="dp-flex ai-center jc-center">
+                <a href="https://github.com/fouadsgarage" target="_blank" rel="noopener" class="dp-flex ai-center jc-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
-                    Tasks
-                </a>
-                <a href="terminal" class="dp-flex ai-center jc-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="4 17 10 11 4 5"/>
-                        <line x1="12" y1="19" x2="20" y2="19"/>
-                    </svg>
-                    Terminal
-                </a>
-                <a href="" class="dp-flex ai-center jc-center" id="share-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="18" cy="5" r="3"/>
-                        <circle cx="6" cy="12" r="3"/>
-                        <circle cx="18" cy="19" r="3"/>
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                    </svg>
-                    Share
+                    GitHub
                 </a>
                 <button type="button" id="theme-toggle" class="dp-flex ai-center jc-center" aria-label="Switch to dark theme" aria-pressed="false">
                     <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -94,680 +72,85 @@
                 </button>
             </nav>
         </header>
-        <main class="docs">
-            <aside class="docs-nav">
-                <h2>On this page</h2>
-                <nav aria-label="Documentation">
-                    <ul>
-                        <li><a href="#overview">Overview</a></li>
-                        <li><a href="#getting-started">Getting started</a></li>
-                        <li><a href="#tasks">Tasks</a></li>
-                        <li><a href="#weights">Weights and progress</a></li>
-                        <li><a href="#auto-save">Auto-save</a></li>
-                        <li><a href="#export-import">Export and import</a></li>
-                        <li><a href="#terminal">Terminal</a></li>
-                        <li><a href="#backups">Backups</a></li>
-                        <li><a href="#theme">Theme</a></li>
-                        <li><a href="#share">Share</a></li>
-                        <li><a href="#shortcuts">Keyboard shortcuts</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </nav>
-            </aside>
+        <main>
             <article>
-                <section class="route">
-                    <p><a href="/garage">Garage</a> / <a href="/garage" aria-current="page">Docs</a></p>
-                </section>
                 <section class="welcome-message">
-                    <p>Documentation for Garage, a task board that runs entirely in your browser.</p>
+                    <p>Small tools that run entirely in your browser.</p>
+                    <span>Garage is a growing collection of simple, fast apps. No account, no server and no build step. Your data stays on your device.</span>
                 </section>
 
-                <section class="doc" id="overview">
-                    <h2>Overview</h2>
-                    <p>Garage helps you plan a project, assign work and see how far along you are. There is no account, no server and no build step. Your project state lives in a single JSON file that you can keep next to your code and commit to Git.</p>
-                    <ul>
-                        <li><strong>Weighted tasks:</strong> every task has a title, an assignee and a weight.</li>
-                        <li><strong>Three-column board:</strong> To Do, In Progress and Done.</li>
-                        <li><strong>Automatic progress:</strong> the completion bar is calculated from task weights.</li>
-                        <li><strong>Auto-save:</strong> tasks are kept in your browser between visits.</li>
-                        <li><strong>JSON export and import:</strong> back up, version and move your project.</li>
-                        <li><strong>Built-in terminal:</strong> manage tasks, read reports and handle backups from the command line.</li>
-                        <li><strong>Local backups:</strong> save snapshots of the board in your browser and restore them later.</li>
-                        <li><strong>Light and dark theme:</strong> follows your system and can be switched from the header.</li>
-                    </ul>
-                </section>
+                <section class="projects" id="projects" aria-label="Projects">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <line x1="9" y1="3" x2="9" y2="21"/>
+                                <line x1="15" y1="3" x2="15" y2="21"/>
+                            </svg>
+                        </div>
+                        <h2>Garage Flow</h2>
+                        <p class="project-text">A task board for planning a project, assigning work and seeing how far along you are. Every task has a weight, so the progress bar always tells the truth.</p>
+                        <ul class="project-features">
+                            <li>Weighted tasks with a To Do, In Progress and Done board</li>
+                            <li>Built-in terminal with reports and burndown chart</li>
+                            <li>JSON export and import, plus local backups</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Tasks</span>
+                            <span class="project-tag">Terminal</span>
+                            <span class="project-tag">JSON</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="flow/tasks" class="btn-primary">Open app</a>
+                            <a href="flow" class="btn-secondary">Docs</a>
+                        </div>
+                    </div>
 
-                <section class="doc" id="getting-started">
-                    <h2>Getting started</h2>
-                    <div class="guide">
-                        <div class="guide-steps">
-                            <div class="step">
-                                <span class="step-number">1</span>
-                                <p>Create tasks in the <a href="tasks">Tasks</a> page with a title, an assignee and a weight. Or type <code>add "Title" @name 20</code> in the <a href="terminal">Terminal</a>.</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">2</span>
-                                <p>Move each task across the board with <strong>Start</strong> and <strong>Success</strong> as work progresses, or use <code>start</code> and <code>done</code> in the terminal.</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">3</span>
-                                <p>Click <strong>Export JSON</strong> (or run <code>export</code>) to download your project state.</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">4</span>
-                                <p>Commit the JSON file to your project repo. To view or update, import the latest JSON back into Garage.</p>
-                            </div>
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M6.5 6.5v11"/>
+                                <path d="M17.5 6.5v11"/>
+                                <path d="M3 9v6"/>
+                                <path d="M21 9v6"/>
+                                <path d="M6.5 12h11"/>
+                            </svg>
+                        </div>
+                        <h2>Garage GYM</h2>
+                        <p class="project-text">A home training log that follows your workouts day by day. Add exercises, set the reps and tick off three sets as you go.</p>
+                        <ul class="project-features">
+                            <li>Day-by-day logs with a quick day selector</li>
+                            <li>Three-set checkboxes and a daily summary</li>
+                            <li>JSON export and import to keep your history</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Workouts</span>
+                            <span class="project-tag">Sets</span>
+                            <span class="project-tag">JSON</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="gym" class="btn-primary">Open app</a>
                         </div>
                     </div>
                 </section>
 
-                <section class="doc" id="tasks">
-                    <h2>Tasks</h2>
-
-                    <h3>Creating a task</h3>
-                    <p>Use the form at the top of the <a href="tasks">Tasks</a> page, or the <code>add</code> command in the <a href="#terminal">Terminal</a>. New tasks always start in To Do.</p>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Field</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Task title</td>
-                                    <td>Required. A short name for the work.</td>
-                                </tr>
-                                <tr>
-                                    <td>Assignee</td>
-                                    <td>Required. The person responsible for the task.</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight %</td>
-                                    <td>Required. A whole number from 1 to 100: the share of the whole project this task represents.</td>
-                                </tr>
-                                <tr>
-                                    <td>Description</td>
-                                    <td>Optional. A longer explanation of the work.</td>
-                                </tr>
-                                <tr>
-                                    <td>Due date</td>
-                                    <td>Optional. The date the task should be finished by. Overdue tasks are highlighted in red.</td>
-                                </tr>
-                                <tr>
-                                    <td>Priority</td>
-                                    <td>Optional. One of Low, Medium, High or Urgent. Defaults to Medium.</td>
-                                </tr>
-                                <tr>
-                                    <td>Tags</td>
-                                    <td>Optional. A comma-separated list of labels, for example <code>frontend, design</code>.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <section class="highlights" aria-label="Principles">
+                    <div class="highlight">
+                        <h3>Local first</h3>
+                        <p>Everything is saved in your browser. Nothing is sent anywhere.</p>
                     </div>
-
-                    <h3>The board</h3>
-                    <div class="flow">
-                        <span class="badge todo">To Do</span>
-                        <span class="flow-arrow" aria-hidden="true">→</span>
-                        <span class="badge progress">In Progress</span>
-                        <span class="flow-arrow" aria-hidden="true">→</span>
-                        <span class="badge done">Done</span>
+                    <div class="highlight">
+                        <h3>No account</h3>
+                        <p>Open a page and start working. There is nothing to sign up for.</p>
                     </div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Column</th>
-                                    <th>Meaning</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>To Do</td>
-                                    <td>Work that has not started yet.</td>
-                                </tr>
-                                <tr>
-                                    <td>In Progress</td>
-                                    <td>Work someone is doing right now.</td>
-                                </tr>
-                                <tr>
-                                    <td>Done</td>
-                                    <td>Finished work. Only Done tasks count toward progress.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="highlight">
+                        <h3>Yours to keep</h3>
+                        <p>Export your data as JSON and store it next to your code or notes.</p>
                     </div>
-
-                    <h3>Moving tasks</h3>
-                    <p>You can move a task between columns in three ways: use the buttons on the card, drag the card and drop it on another column, or use the terminal commands <code>start</code>, <code>done</code>, <code>back</code> and <code>reopen</code>. All of them update the same status and history.</p>
-
-                    <h3>Task actions</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Button</th>
-                                    <th>Shown in</th>
-                                    <th>What it does</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Start</td>
-                                    <td>To Do</td>
-                                    <td>Moves the task to In Progress.</td>
-                                </tr>
-                                <tr>
-                                    <td>Success</td>
-                                    <td>In Progress</td>
-                                    <td>Marks the task as Done.</td>
-                                </tr>
-                                <tr>
-                                    <td>Back</td>
-                                    <td>In Progress</td>
-                                    <td>Returns the task to To Do.</td>
-                                </tr>
-                                <tr>
-                                    <td>Reopen</td>
-                                    <td>Done</td>
-                                    <td>Returns the task to In Progress, for example after an accidental Success.</td>
-                                </tr>
-                                <tr>
-                                    <td>Edit</td>
-                                    <td>Every column</td>
-                                    <td>Loads the task into the form. Change any field and click <strong>Save task</strong>, or <strong>Cancel</strong> to discard the changes.</td>
-                                </tr>
-                                <tr>
-                                    <td>Delete</td>
-                                    <td>Every column</td>
-                                    <td>Removes the task after you confirm. This cannot be undone.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <section class="doc" id="weights">
-                    <h2>Weights and progress</h2>
-                    <p>A weight describes how much of the project a task represents. The progress bar shows the weight of Done tasks compared with the weight of all tasks.</p>
-                    <p><code>progress = done weight ÷ total weight × 100</code></p>
-
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Task</th>
-                                    <th>Weight</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Design</td>
-                                    <td>40%</td>
-                                    <td>Done</td>
-                                </tr>
-                                <tr>
-                                    <td>Build</td>
-                                    <td>35%</td>
-                                    <td>In Progress</td>
-                                </tr>
-                                <tr>
-                                    <td>Launch</td>
-                                    <td>25%</td>
-                                    <td>Done</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p>In this example the Done weights add up to 65 out of 100, so the board shows <strong>65% complete</strong>.</p>
-
-                    <h3>Weight rules</h3>
-                    <ul>
-                        <li>Each weight is a whole number from 1 to 100.</li>
-                        <li>The weights of all tasks should add up to at most 100%.</li>
-                        <li>The line below the form shows how much weight is still available. In the terminal, run <code>weights</code>.</li>
-                        <li>A task that needs more weight than what is left is not added, and Garage tells you how much remains.</li>
-                        <li>While you edit a task, the line shows the weight available for that task.</li>
-                        <li>If an import pushes the total above 100%, the line turns red until you edit or delete tasks to fix it.</li>
-                    </ul>
-                    <div class="note">
-                        <p>Progress is calculated against the real total, so the bar stays accurate even while the weights add up to less than 100%.</p>
-                    </div>
-                </section>
-
-                <section class="doc" id="auto-save">
-                    <h2>Auto-save</h2>
-                    <p>Garage saves your tasks in your browser after every change, whether you make it on the board or in the terminal. Reloading the page or switching between Tasks, Terminal and Docs does not lose anything.</p>
-                    <ul>
-                        <li>Data stays on this device and in this browser. It is not synced anywhere.</li>
-                        <li>Another browser or browser profile starts with an empty board.</li>
-                        <li>Clearing the site data for Garage removes the saved tasks and the local <a href="#backups">backups</a>.</li>
-                        <li>Private or incognito windows may discard the data when they close.</li>
-                    </ul>
-                    <div class="note warning">
-                        <p>Auto-save and local backups live in the same browser, so they are a convenience, not a safe copy. Export your project as JSON regularly and keep the file in your repo.</p>
-                    </div>
-                </section>
-
-                <section class="doc" id="export-import">
-                    <h2>Export and import</h2>
-
-                    <h3>Export JSON</h3>
-                    <p>The <strong>Export JSON</strong> button, or the <code>export</code> terminal command, downloads a file named <code>project-status-YYYY-MM-DD.json</code> with the current project state.</p>
-                    <pre><code>{
-    "version": 1,
-    "project": {
-        "name": "Garage",
-        "updated_at": "2026-11-17T09:30:00.000Z"
-    },
-    "tasks": [
-        {
-        "id": "m3k9x2ab",
-        "title": "Design the landing page",
-        "assignee": "Sam",
-        "weight": 40,
-        "status": "done",
-        "description": "Hero, pricing and footer",
-        "due_date": "2026-11-20",
-        "priority": "high",
-        "tags": ["design", "frontend"],
-        "history": {
-            "created_at": "2026-11-10T08:00:00.000Z",
-            "started_at": "2026-11-12T09:15:00.000Z",
-            "completed_at": "2026-11-16T17:45:00.000Z",
-            "reopened_at": null
-        }
-        }
-    ]
-    }</code></pre>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Field</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>version</td>
-                                    <td>The file format version. Currently <code>1</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>project</td>
-                                    <td>The project name and the time of the export.</td>
-                                </tr>
-                                <tr>
-                                    <td>tasks</td>
-                                    <td>The list of tasks, each with <code>id</code>, <code>title</code>, <code>assignee</code>, <code>weight</code> and <code>status</code>, plus the optional fields below.</td>
-                                </tr>
-                                <tr>
-                                    <td>status</td>
-                                    <td>One of <code>todo</code>, <code>in_progress</code> or <code>done</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>description</td>
-                                    <td>Optional. The longer explanation of the task.</td>
-                                </tr>
-                                <tr>
-                                    <td>due_date</td>
-                                    <td>Optional. An ISO date, for example <code>2026-11-20</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>priority</td>
-                                    <td>One of <code>low</code>, <code>medium</code>, <code>high</code> or <code>urgent</code>. Defaults to <code>medium</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>tags</td>
-                                    <td>Optional. A list of short labels.</td>
-                                </tr>
-                                <tr>
-                                    <td>history</td>
-                                    <td>Timestamps for the task lifecycle: <code>created_at</code>, <code>started_at</code>, <code>completed_at</code> and <code>reopened_at</code>. A value is <code>null</code> until the matching event happens. The terminal <code>burndown</code> command is built from this history.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Import JSON</h3>
-                    <p>The <strong>Import JSON</strong> button, or the <code>import</code> terminal command, loads a file you exported earlier. If the board is empty, the tasks load right away. If the board already has tasks, Garage asks what to do:</p>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Choice</th>
-                                    <th>Result</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Merge</td>
-                                    <td>Adds the imported tasks to the board. A task with the same id is updated from the file.</td>
-                                </tr>
-                                <tr>
-                                    <td>Replace all</td>
-                                    <td>Removes the current tasks and loads the ones from the file.</td>
-                                </tr>
-                                <tr>
-                                    <td>Cancel</td>
-                                    <td>Leaves the board unchanged.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p>In the terminal the question appears as a line: answer <kbd>m</kbd> to merge, <kbd>r</kbd> to replace all, or anything else to cancel.</p>
-
-                    <h3>What Garage checks</h3>
-                    <ul>
-                        <li>A file without a <code>tasks</code> list is rejected.</li>
-                        <li>A file exported by a newer version of Garage is rejected.</li>
-                        <li>Older files without a <code>version</code> field are still accepted.</li>
-                        <li>Files exported before the extra fields existed are accepted; missing description, due date, priority, tags and history are filled with defaults.</li>
-                        <li>Tasks with a missing title or assignee, a weight outside 1 to 100, or a duplicate id are skipped. The message after the import tells you how many were skipped.</li>
-                    </ul>
-                </section>
-
-                <section class="doc" id="terminal">
-                    <h2>Terminal</h2>
-                    <p>The <a href="terminal">Terminal</a> page is a command line for the same board you see on the Tasks page. Type a command and press <kbd>Enter</kbd>. Command names are not case-sensitive, an unknown command points you to <code>help</code>, and <code>help &lt;command&gt;</code> shows usage and examples for one command.</p>
-
-                    <h3>Referring to a task</h3>
-                    <p>Commands that act on a task accept either of these:</p>
-                    <ul>
-                        <li><strong>A number:</strong> <code>#3</code> or <code>3</code> is the position shown in the first column of <code>list</code>. Numbers can shift after you delete a task, so run <code>list</code> again.</li>
-                        <li><strong>An id:</strong> the full id or the start of it, like <code>m3k</code>. If the start matches more than one task, Garage asks you to type more characters.</li>
-                    </ul>
-
-                    <h3>Writing commands</h3>
-                    <ul>
-                        <li>Use quotes for values with spaces: <code>add "Fix the login page" @sam 20</code>. Single and double quotes both work, and <code>--title="a b"</code> works too.</li>
-                        <li>An assignee is written as <code>@name</code>, or <code>@"Sam Lee"</code> when it has a space.</li>
-                        <li>Options start with <code>--</code> and take a value: <code>--due 2026-11-25</code>.</li>
-                        <li>In <code>add</code>, the last number outside quotes is the weight, so <code>add Fix login @sam 20</code> works without quotes.</li>
-                    </ul>
-
-                    <h3>Task commands</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Command</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>add "Title" @name 20</td>
-                                    <td>Creates a task. Optional: <code>--due YYYY-MM-DD</code>, <code>--priority low|medium|high|urgent</code>, <code>--tags a,b</code>, <code>--desc "text"</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>list</td>
-                                    <td>Lists tasks. Filter with a status (<code>todo</code>, <code>in_progress</code>, <code>done</code>), <code>@name</code>, <code>--priority p</code> or <code>--tag t</code>. Alias: <code>ls</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>start &lt;task&gt;</td>
-                                    <td>Moves a To Do task to In Progress.</td>
-                                </tr>
-                                <tr>
-                                    <td>done &lt;task&gt;</td>
-                                    <td>Marks an In Progress task as Done.</td>
-                                </tr>
-                                <tr>
-                                    <td>back &lt;task&gt;</td>
-                                    <td>Returns an In Progress task to To Do.</td>
-                                </tr>
-                                <tr>
-                                    <td>reopen &lt;task&gt;</td>
-                                    <td>Returns a Done task to In Progress.</td>
-                                </tr>
-                                <tr>
-                                    <td>edit &lt;task&gt; --weight 30</td>
-                                    <td>Changes fields. Options: <code>--title</code>, <code>--assignee</code> (or <code>@name</code>), <code>--weight</code>, <code>--due</code> (use <code>none</code> to clear), <code>--priority</code>, <code>--tags</code>, <code>--desc</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>rm &lt;task&gt;</td>
-                                    <td>Deletes a task after asking <code>[y/N]</code>. Add <code>-y</code> to skip the question. Alias: <code>delete</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>show &lt;task&gt;</td>
-                                    <td>Shows every field of a task and its history.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p><code>start</code>, <code>done</code>, <code>back</code>, <code>reopen</code> and <code>rm</code> accept several tasks at once, for example <code>done 1 2 3</code>. A command only works on tasks in the right column: <code>done</code> on a To Do task is skipped with a message.</p>
-
-                    <h3>Report commands</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Command</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>status</td>
-                                    <td>Progress bar and the number of tasks and weight in each column. Alias: <code>progress</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>weights</td>
-                                    <td>Weight used and weight still available.</td>
-                                </tr>
-                                <tr>
-                                    <td>overdue</td>
-                                    <td>Tasks that are past their due date and not Done.</td>
-                                </tr>
-                                <tr>
-                                    <td>who</td>
-                                    <td>Work per assignee: share of the total weight and how many of their tasks are Done.</td>
-                                </tr>
-                                <tr>
-                                    <td>find &lt;text&gt;</td>
-                                    <td>Searches title, assignee, description, due date, priority and tags.</td>
-                                </tr>
-                                <tr>
-                                    <td>burndown</td>
-                                    <td>A text chart of the weight still remaining for each day, built from the task history.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p>The burndown starts on the earliest creation or completion date and ends today. Tasks imported without history are counted from the first day, and Done tasks without a completion date are counted as completed today.</p>
-
-                    <h3>Data commands</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Command</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>export</td>
-                                    <td>Downloads the project as a JSON file, like the <strong>Export JSON</strong> button.</td>
-                                </tr>
-                                <tr>
-                                    <td>import</td>
-                                    <td>Opens a file picker. Asks merge or replace if the board is not empty.</td>
-                                </tr>
-                                <tr>
-                                    <td>reset</td>
-                                    <td>Removes every task from this browser after asking <code>[y/N]</code>. Add <code>-y</code> to skip the question. Backups are kept.</td>
-                                </tr>
-                                <tr>
-                                    <td>backup [label]</td>
-                                    <td>Saves a snapshot of the board. See <a href="#backups">Backups</a>.</td>
-                                </tr>
-                                <tr>
-                                    <td>restore [n]</td>
-                                    <td>Lists backups, or replaces the board with backup <code>n</code>.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Terminal commands</h3>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Command</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>help</td>
-                                    <td>Shows the available commands.</td>
-                                </tr>
-                                <tr>
-                                    <td>clear</td>
-                                    <td>Clears the terminal. Alias: <code>cls</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>version</td>
-                                    <td>Shows the Garage version.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Example session</h3>
-                    <pre><code>&gt; add "Design landing page" @sam 40 --priority high --due 2026-11-25
-    &gt; add Build API @lee 35 --tags backend
-    &gt; start 1
-    &gt; done 1
-    &gt; list in_progress
-    &gt; status
-    &gt; edit 2 --weight 30 --due none
-    &gt; backup before-launch
-    &gt; rm 2</code></pre>
-                    <div class="note">
-                        <p>The terminal and the board share the same saved tasks. A change made in one shows up in the other the next time you open that page.</p>
-                    </div>
-                </section>
-
-                <section class="doc" id="backups">
-                    <h2>Backups</h2>
-                    <p>A backup is a snapshot of all tasks, saved in your browser. Use it before a risky change such as an import, a reset or a big edit. Backups are managed from the <a href="terminal">Terminal</a>.</p>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Command</th>
-                                    <th>Result</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>backup</td>
-                                    <td>Saves a snapshot of the current board. Add an optional label: <code>backup before-launch</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td>restore</td>
-                                    <td>Lists your backups, oldest first, with their number, date, task count and label.</td>
-                                </tr>
-                                <tr>
-                                    <td>restore 2</td>
-                                    <td>Replaces the current tasks with backup 2 after asking <code>[y/N]</code>. Add <code>-y</code> to skip the question.</td>
-                                </tr>
-                                <tr>
-                                    <td>backup --delete 2</td>
-                                    <td>Deletes backup 2.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <ul>
-                        <li>Garage keeps the last 10 backups. Creating an 11th removes the oldest, so backup numbers can shift.</li>
-                        <li>An empty board cannot be backed up.</li>
-                        <li><code>reset</code> and the <strong>Reset data</strong> button remove tasks but leave backups in place.</li>
-                        <li>Restoring replaces the current tasks and cannot be undone. Run <code>backup</code> first if you may want them back.</li>
-                    </ul>
-                    <div class="note warning">
-                        <p>Backups live in the same browser storage as your tasks. Clearing the site data removes both, so keep an exported JSON file in your repo as the real copy.</p>
-                    </div>
-                </section>
-
-                <section class="doc" id="theme">
-                    <h2>Theme</h2>
-                    <p>Garage comes in a light and a dark theme. The first time you visit, it follows your system setting. Use the moon or sun button in the header to switch, and Garage remembers your choice in this browser.</p>
-                    <ul>
-                        <li>Until you pick a theme yourself, Garage follows your system and updates when it changes.</li>
-                        <li>The terminal and code blocks stay dark in both themes.</li>
-                        <li>The choice is stored in this browser only, like your tasks.</li>
-                    </ul>
-                </section>
-
-                <section class="doc" id="share">
-                    <h2>Share</h2>
-                    <p>The <strong>Share</strong> button in the header copies the address of the current page to your clipboard and shows a confirmation.</p>
-                    <div class="note">
-                        <p>The link opens Garage, not your tasks, because tasks live in your browser. To share a project, send the exported JSON file or commit it to your repo.</p>
-                    </div>
-                </section>
-
-                <section class="doc" id="shortcuts">
-                    <h2>Keyboard shortcuts</h2>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Keys</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><kbd>Enter</kbd></td>
-                                    <td>Adds or saves the task while a form field is focused. In the terminal it runs the command, or sends your answer to a <code>[y/N]</code> question.</td>
-                                </tr>
-                                <tr>
-                                    <td><kbd>Esc</kbd></td>
-                                    <td>Cancels editing a task while the form is focused, and closes a confirmation dialog.</td>
-                                </tr>
-                                <tr>
-                                    <td><kbd>Tab</kbd></td>
-                                    <td>Moves to the next field or button. Use <kbd>Shift</kbd> + <kbd>Tab</kbd> to go back.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <section class="doc" id="faq">
-                    <h2>FAQ</h2>
-
-                    <h3>Where is my data stored?</h3>
-                    <p>In your browser, on your device. Garage has no server and does not send your tasks anywhere.</p>
-
-                    <h3>Can a team use Garage together?</h3>
-                    <p>Yes, through the JSON file. One person exports and commits the file, and the others import the latest version. Use Merge to combine it with what is already on the board. There is no live sync, so the most recent import wins.</p>
-
-                    <h3>Why can I not add a task?</h3>
-                    <p>The weight you entered is higher than the weight still available. Check the line below the form (or run <code>weights</code> in the terminal), lower the weight, or free some weight by editing or deleting other tasks.</p>
-
-                    <h3>My tasks disappeared. What happened?</h3>
-                    <p>The site data was probably cleared, or you opened Garage in a different browser, profile or private window. If you have an exported file, import it to restore the board. If you made a <a href="#backups">backup</a> in the same browser, <code>restore</code> will list it.</p>
-
-                    <h3>Can I do everything from the terminal?</h3>
-                    <p>You can create, edit, move and delete tasks, read reports, export, import, reset and manage backups. The board adds drag and drop, search and the assignee filter.</p>
-
-                    <h3>What does the terminal ask me before deleting?</h3>
-                    <p><code>rm</code>, <code>reset</code> and <code>restore</code> ask <code>[y/N]</code> and do nothing unless you answer <kbd>y</kbd>. Add <code>-y</code> to the command to skip the question.</p>
-
-                    <h3>Is there a desktop version?</h3>
-                    <p>Yes. Garage Desktop runs this web app in a native Windows window, and Export JSON saves through the system save dialog. You can find it on the <a href="https://github.com/fouadsgarage/garage-desktop" target="_blank" rel="noopener">project's GitHub page</a>.</p>
-
-                    <h3>Which browsers are supported?</h3>
-                    <p>Current versions of Chrome, Edge, Firefox and Safari.</p>
                 </section>
             </article>
         </main>

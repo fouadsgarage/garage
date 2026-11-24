@@ -1,6 +1,6 @@
 # Garage
 
-**A lightweight, self-hosted task board that runs entirely in your browser.**
+**Small tools that run entirely in your browser.**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-fouadsgarage.github.io%2Fgarage-2563eb?style=for-the-badge&logo=githubpages&logoColor=white)](https://fouadsgarage.github.io/garage/)
 [![License](https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge)](LICENSE)
@@ -14,11 +14,19 @@
 
 ## What is Garage?
 
-**Garage** is a lightweight, self-hosted project task board that runs **entirely in your browser** — no backend, no database, no build step. Your tasks are saved automatically in your browser, and you can export the whole project state to a single JSON file that lives alongside your project. Share it, version it with Git, and keep full control of your data.
+**Garage** is a growing collection of small, fast apps that run **entirely in your browser**: no backend, no database, no account and no build step. Every app saves its data in your browser, and can export it to a single JSON file that you keep, share and version with Git.
 
-Prefer the keyboard? The built-in **terminal** works on the same board: add and move tasks, read reports, take backups and import or export, all from a command line.
+One repository, one GitHub Pages site, several independent tools.
 
-> **Explore GitHub. Understand projects. Stay in your terminal.**
+| Project | What it does | Open |
+|---|---|---|
+| **Garage Flow** | A weighted task board with a built-in terminal, reports, backups and JSON export | [Tasks](https://fouadsgarage.github.io/garage/flow/tasks) · [Terminal](https://fouadsgarage.github.io/garage/flow/terminal) · [Docs](https://fouadsgarage.github.io/garage/flow/) |
+| **Garage GYM** | A home training log with day-by-day workouts, reps and three-set checkboxes | [Open app](https://fouadsgarage.github.io/garage/gym/) |
+
+---
+
+> [!TIP]
+> **Try it now:** open the live demo at **[fouadsgarage.github.io/garage](https://fouadsgarage.github.io/garage/)** and pick an app. No install, no sign-up.
 
 ---
 
@@ -26,9 +34,61 @@ Prefer the keyboard? The built-in **terminal** works on the same board: add and 
 
 **[https://fouadsgarage.github.io/garage/](https://fouadsgarage.github.io/garage/)**
 
-The home page doubles as the **documentation**, with a table of contents covering every feature.
+| Page | URL |
+|---|---|
+| Garage (home) | `https://fouadsgarage.github.io/garage/` |
+| Garage Flow docs | `https://fouadsgarage.github.io/garage/flow/` |
+| Garage Flow tasks | `https://fouadsgarage.github.io/garage/flow/tasks` |
+| Garage Flow terminal | `https://fouadsgarage.github.io/garage/flow/terminal` |
+| Garage GYM | `https://fouadsgarage.github.io/garage/gym/` |
 
 ---
+
+## Why Garage?
+
+Most tools are heavy, cloud-locked, and require a server. **Garage is the opposite.**
+
+| Typical tools | Garage |
+|---|---|
+| Data on someone else's server | Data in your browser and your own repo |
+| Requires hosting and a database | Static files only |
+| Complex setup | Fork and enable GitHub Pages |
+| Vendor lock-in | Plain JSON, fully readable |
+| Monthly subscription | Free forever |
+| Build step required | No build, no bundler |
+
+---
+
+## Data and Privacy
+
+| Topic | Details |
+|---|---|
+| Storage | Each app keeps its data in your browser's local storage, on your device only |
+| Isolation | Every app uses its own storage keys, so apps never overwrite each other |
+| Backup | Auto-save is a convenience, not a backup. Export JSON regularly |
+| Sync | None. Move data between devices with the exported JSON file |
+| Network | No analytics, no cookies, no external calls |
+
+| App | Storage keys |
+|---|---|
+| Garage (home) | `garage-theme` |
+| Garage Flow | `garage-flow-tasks`, `garage-flow-backups`, `garage-flow-theme` |
+| Garage GYM | `garage-gym-data`, `garage-gym-day`, `garage-gym-theme` |
+
+All apps support a light and a dark theme. The first visit follows your system setting, and the header button switches it.
+
+> [!IMPORTANT]
+> Auto-save keeps your data in this browser only. **Export the JSON file regularly** and commit it to your repo — that is your real backup.
+
+---
+
+# Garage Flow
+
+**A lightweight task board with weighted progress, a built-in terminal and JSON state.**
+
+Garage Flow helps you plan a project, assign work and see how far along you are. Your tasks are saved automatically in your browser, and you can export the whole project state to a single JSON file that lives alongside your project. Share it, version it with Git, and keep full control of your data.
+
+Prefer the keyboard? The built-in **terminal** works on the same board: add and move tasks, read reports, take backups and import or export, all from a command line.
 
 ## Features
 
@@ -51,40 +111,22 @@ The home page doubles as the **documentation**, with a table of contents coverin
 | **Task History** | Every task records `created_at`, `started_at`, `completed_at`, and `reopened_at` timestamps, used by the terminal `burndown` chart |
 | **JSON Export / Import** | Save and load project state as a single, versioned JSON file |
 | **Safe Import** | Merge, replace, or cancel when the board already has tasks; invalid tasks are skipped and counted |
-| **Reset Data** | One click clears all local data after a confirmation — useful for starting a fresh project |
+| **Reset Data** | One click clears all local data after a confirmation, useful for starting a fresh project |
 | **Full Terminal** | Create, edit, move and delete tasks, read reports (`status`, `weights`, `overdue`, `who`, `find`, `burndown`), and run `export`, `import`, `reset`, `backup` and `restore` |
 | **Smart Command Parser** | Quoted values, `--options`, `@assignee` mentions, and tasks addressed by `#number` or id prefix |
 | **Confirmed Deletes** | `rm`, `reset` and `restore` ask `[y/N]` inside the terminal; `-y` skips the question |
 | **Local Backups** | Save named snapshots of the board in your browser (last 10 kept) and restore any of them |
 | **Burndown Chart** | A text chart of the weight still remaining per day, built from task history |
-| **Built-in Documentation** | The home page is a full user guide with a sticky table of contents |
+| **Light & Dark Theme** | Follows your system and can be switched from the header |
+| **Built-in Documentation** | The Flow home page is a full user guide with a sticky table of contents |
 | **Share Button** | Copy the page URL to your clipboard instantly |
-| **GitHub Pages Ready** | Deploy in one click — no server required |
 | **Fully Responsive** | Works on desktop, tablet, and mobile |
 | **Ubuntu Font** | Clean, modern typography |
-| **No Tracking** | Zero analytics, zero cookies, zero external calls |
-
----
-
-## Why Garage?
-
-Most project management tools are heavy, cloud-locked, and require a server. **Garage is the opposite.**
-
-| Typical tools | Garage |
-|---|---|
-| Data on someone else's server | Data in your browser and your own repo |
-| Requires hosting and a database | Static files only |
-| Complex setup | Fork and enable GitHub Pages |
-| Vendor lock-in | Plain JSON, fully readable |
-| Monthly subscription | Free forever |
-| Build step required | No build, no bundler |
-
----
 
 ## How It Works
 
 ```
-1. Open Garage in your browser
+1. Open Garage Flow in your browser
 2. Add tasks and assign weights (plus optional description, due date, priority, and tags)
 3. Move tasks across the board by drag & drop, with the action buttons, or from the terminal (saved automatically)
 4. Click "Export JSON" (or run `export`) → project-status-YYYY-MM-DD.json
@@ -93,8 +135,6 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 ```
 
 **GitHub itself becomes your sync layer:** every change is a commit, every review is a pull request.
-
----
 
 ## Tasks
 
@@ -110,8 +150,6 @@ Most project management tools are heavy, cloud-locked, and require a server. **G
 
 Each task card also shows its priority, optional due date, description, and tags, so the whole context lives on the board. Every one of these actions is also available from the [terminal](#terminal-commands).
 
----
-
 ## Filtering and Search
 
 | Control | Where | What it does |
@@ -121,8 +159,6 @@ Each task card also shows its priority, optional due date, description, and tags
 | **Work per assignee** | Below the filters | A bar per person showing their share of total weight, how many tasks they have done, and their completion percentage |
 
 In the terminal, `find <text>`, `list @name` and `who` do the same jobs.
-
----
 
 ## Weights and Progress
 
@@ -140,8 +176,6 @@ progress = done weight ÷ total weight × 100
 
 In the terminal, `status` shows the progress bar and `weights` shows the weight used and remaining.
 
----
-
 ## Task History
 
 Every task records the four key moments of its lifecycle, saved in the JSON export:
@@ -155,28 +189,23 @@ Every task records the four key moments of its lifecycle, saved in the JSON expo
 
 `show <task>` prints a task's history, and `burndown` turns these timestamps into a chart of the weight still remaining for each day.
 
----
-
-## Data and Privacy
+## Flow Data and Backups
 
 | Topic | Details |
 |---|---|
-| Storage | Tasks are kept in your browser's local storage, on your device only |
-| Backup | Auto-save is a convenience, not a backup. Export JSON regularly |
+| Auto-save | Tasks are kept in your browser's local storage after every change |
 | Local backups | `backup` saves snapshots in the same browser storage, so clearing site data removes them too |
-| Sync | None. Move a project between devices with the exported JSON file |
 | Reset | The **Reset data** button and the `reset` command wipe every task from this browser after a confirmation. Local backups are kept |
-| Network | No analytics, no cookies, no external calls |
 
----
+## Flow JSON Format
 
-## JSON Format
+The export is a file named `project-status-YYYY-MM-DD.json`.
 
 ```json
 {
   "version": 1,
   "project": {
-    "name": "Garage",
+    "name": "Garage Flow",
     "updated_at": "2026-11-17T09:30:00.000Z"
   },
   "tasks": [
@@ -211,8 +240,6 @@ Every task records the four key moments of its lifecycle, saved in the JSON expo
 
 When the board already has tasks, importing offers **Merge** (add tasks, update matching ids), **Replace all**, or **Cancel**. In the terminal, answer `m`, `r`, or anything else to cancel.
 
----
-
 ## Keyboard Shortcuts
 
 | Keys | Action |
@@ -221,86 +248,12 @@ When the board already has tasks, importing offers **Merge** (add tasks, update 
 | `Esc` | Cancel editing a task, or close a confirmation dialog |
 | `Tab` | Move between fields and buttons |
 
----
-
 ## Desktop App
 
-**Garage Desktop** runs the hosted version in a native Windows window, with Export JSON saving through the system save dialog. See [garage-desktop](https://github.com/fouadsgarage/garage-desktop) for downloads.
+**Garage Flow Desktop** runs the hosted version in a native Windows window, with Export JSON saving through the system save dialog. See [garage-desktop](https://github.com/fouadsgarage/garage-desktop) for downloads.
 
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Markup | HTML5 |
-| Styling | CSS3 (custom properties, flexbox, grid, media queries) |
-| Logic | Vanilla JavaScript (ES6+) |
-| State | JSON |
-| Persistence | Browser local storage |
-| Hosting | GitHub Pages |
-| Typography | Ubuntu Font |
-| Build Tools | None |
-
----
-
-## Project Structure
-
-```
-garage/
-├── .nojekyll
-├── index.html
-├── LICENSE
-├── README.md
-├── tasks.html
-├── terminal.html
-└── dashboard/
-    └── assets/
-        ├── engines/
-        │   └── engine.js
-        ├── fonts/
-        │   └── ubuntu-font-family-0.83/
-        │       └── ubuntu-font-family-0.83/
-        │           ├── Ubuntu-*.ttf
-        │           ├── LICENCE.txt
-        │           ├── LICENCE-FAQ.txt
-        │           ├── FONTLOG.txt
-        │           ├── copyright.txt
-        │           └── ...
-        └── stylesheets/
-            ├── defaults.css
-            └── style.css
-```
-
----
-
-## Getting Started
-
-### Use the hosted version
-
-Open **[https://fouadsgarage.github.io/garage/](https://fouadsgarage.github.io/garage/)** and start adding tasks.
-
-### Self-host on GitHub Pages
-
-```bash
-# 1. Fork this repository
-# 2. Go to Settings → Pages
-# 3. Set source to: main branch / root folder
-# 4. Your instance is live at:
-#    https://<your-username>.github.io/garage/
-```
-
-### Run locally
-
-```bash
-git clone https://github.com/fouadsgarage/garage.git
-cd garage
-# Open index.html in your browser — that's it.
-```
-
----
-
-## Terminal Commands
+<details>
+<summary><strong>Terminal Commands</strong> — click to expand</summary>
 
 The terminal works on the same saved tasks as the board. Type `help` for the list, or `help <command>` for usage and examples.
 
@@ -364,9 +317,9 @@ The terminal works on the same saved tasks as the board. Type `help` for the lis
 |---|---|
 | `help [command]` | Show available commands, or usage for one command |
 | `clear` | Clear the terminal |
-| `version` | Show Garage version |
+| `version` | Show Garage Flow version |
 
-Aliases: `ls` (list), `progress` (status), `delete` (rm), `cls` (clear).
+Aliases: `ls` (list), `progress` (status), `delete` and `del` (rm), `success` (done), `info` (show), `cls` (clear).
 
 ### Example session
 
@@ -379,6 +332,188 @@ Aliases: `ls` (list), `progress` (status), `delete` (rm), `cls` (clear).
 > backup before-launch
 > burndown
 ```
+
+</details>
+
+> [!WARNING]
+> `rm`, `reset`, and `restore` ask for confirmation before deleting anything. Use `-y` only when you are sure.
+
+---
+
+# Garage GYM
+
+**A home training log that follows your workouts day by day.**
+
+Garage GYM is a local home workout tracker. Add exercises to a day, set the reps and tick off three sets as you go. Everything is saved in your browser, and you can export your whole history to a JSON file.
+
+## Features
+
+| Feature | Description |
+|---|---|
+| **Exercise Log** | Add an exercise with a name, a date and optional reps (1 to 999) |
+| **Day-by-Day View** | A day selector lists every day with workouts, labels Today and Yesterday, and remembers the last day you opened |
+| **Three-Set Checkboxes** | Tick Set 1, Set 2 and Set 3 for every exercise |
+| **Daily Summary** | See how many exercises the day has, how many sets are done, and how many exercises are fully completed (3/3) |
+| **Search** | Live search across exercise names |
+| **Set Filter** | Show only exercises with no sets, one, two or three sets done |
+| **Edit & Delete** | Edit any exercise in place, or delete it after a confirmation |
+| **Auto-Save** | Your log is saved in your browser after every change |
+| **JSON Export / Import** | Save and load your history as a single JSON file |
+| **Safe Import** | Invalid exercises are skipped and counted; with existing data you confirm before merging |
+| **Reset Data** | Clears every exercise from this browser after a confirmation |
+| **Light & Dark Theme** | Follows your system and can be switched from the header |
+| **Fully Responsive** | Works on desktop, tablet, and mobile |
+
+## How It Works
+
+```
+1. Open Garage GYM in your browser
+2. Add an exercise with a name, a date and the reps
+3. Pick a day and tick off each set as you finish it
+4. Click "Export JSON" → garage-gym-YYYY-MM-DD.json
+5. Keep the file with your notes or commit it to a repo
+6. To restore or merge your history, import the file
+```
+
+## GYM JSON Format
+
+```json
+{
+  "version": 1,
+  "project": {
+    "name": "Garage GYM",
+    "updated_at": "2026-11-24T08:00:00.000Z"
+  },
+  "exercises": [
+    {
+      "id": "k2j8d9x1m3ab",
+      "name": "Push-ups",
+      "date": "2026-11-24",
+      "reps": 15,
+      "set1": true,
+      "set2": true,
+      "set3": false,
+      "createdAt": "2026-11-24T07:45:00.000Z"
+    }
+  ]
+}
+```
+
+| Import check | Behavior |
+|---|---|
+| File is a list, or an object with an `exercises` list | File is accepted |
+| No list found | File is rejected |
+| Missing name, or a date that is not `YYYY-MM-DD`, or a duplicate id | Exercise is skipped and counted in the result message |
+| Invalid `reps` | Stored as empty |
+| Missing `id` or `createdAt` | Filled automatically |
+
+When the log is empty the imported exercises load right away. When it already has exercises, you confirm to merge them with the current data (matching ids are updated), or cancel to abort.
+
+## GYM Keyboard Shortcuts
+
+| Keys | Action |
+|---|---|
+| `Enter` | Add or save the exercise while a form field is focused |
+| `Esc` | Cancel editing an exercise, or close a confirmation dialog |
+| `Tab` | Move between fields and buttons |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Markup | HTML5 |
+| Styling | CSS3 (custom properties, flexbox, grid, media queries) |
+| Logic | Vanilla JavaScript (ES6+) |
+| State | JSON |
+| Persistence | Browser local storage |
+| Hosting | GitHub Pages |
+| Typography | Ubuntu Font (Garage Flow), system fonts (Garage and Garage GYM) |
+| Build Tools | None |
+
+---
+
+<details>
+<summary><strong>Project Structure</strong> — click to expand</summary>
+
+```
+garage/
+├── .nojekyll
+├── index.html
+├── LICENSE
+├── README.md
+├── assets/
+│   ├── engines/
+│   │   └── engine.js
+│   └── stylesheets/
+│       ├── defaults.css
+│       └── style.css
+├── flow/
+│   ├── index.html
+│   ├── tasks.html
+│   ├── terminal.html
+│   └── dashboard/
+│       └── assets/
+│           ├── engines/
+│           │   └── engine.js
+│           ├── fonts/
+│           │   └── ubuntu-font-family-0.83/
+│           │       └── ubuntu-font-family-0.83/
+│           │           ├── Ubuntu-*.ttf
+│           │           ├── LICENCE.txt
+│           │           ├── LICENCE-FAQ.txt
+│           │           ├── FONTLOG.txt
+│           │           ├── copyright.txt
+│           │           └── ...
+│           └── stylesheets/
+│               ├── defaults.css
+│               └── style.css
+└── gym/
+    ├── index.html
+    └── dashboard/
+        └── assets/
+            ├── engines/
+            │   └── engine.js
+            └── stylesheets/
+                ├── defaults.css
+                └── style.css
+```
+
+Each app is a self-contained folder, so a new tool is just a new folder with its own `index.html` and a card on the home page.
+
+</details>
+
+---
+
+## Getting Started
+
+### Use the hosted version
+
+Open **[https://fouadsgarage.github.io/garage/](https://fouadsgarage.github.io/garage/)** and pick an app.
+
+### Self-host on GitHub Pages
+
+```bash
+# 1. Fork this repository
+# 2. Go to Settings → Pages
+# 3. Set source to: main branch / root folder
+# 4. Your instance is live at:
+#    https://<your-username>.github.io/garage/
+```
+
+Garage Flow's Back button and breadcrumbs use absolute paths that start with `/garage/flow/`. Keep the repository named `garage`, or update those links if you rename it.
+
+### Run locally
+
+```bash
+git clone https://github.com/fouadsgarage/garage.git
+cd garage
+# Open index.html in your browser, that's it.
+```
+
+> [!NOTE]
+> The absolute Garage Flow links only resolve on the hosted site, where the app lives under `/garage/`.
 
 ---
 
@@ -396,9 +531,9 @@ Contributions, suggestions, and improvements are welcome.
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**, see the [LICENSE](LICENSE) file for details.
 
-The **Ubuntu Font** is used under its own license (Ubuntu Font Licence 1.0), included alongside the font files at `dashboard/assets/fonts/ubuntu-font-family-0.83/ubuntu-font-family-0.83/LICENCE.txt`.
+The **Ubuntu Font** is used under its own license (Ubuntu Font Licence 1.0), included alongside the font files at `flow/dashboard/assets/fonts/ubuntu-font-family-0.83/ubuntu-font-family-0.83/LICENCE.txt`.
 
 ---
 
@@ -411,4 +546,4 @@ The **Ubuntu Font** is used under its own license (Ubuntu Font Licence 1.0), inc
 
 ---
 
-**Garage** — *Create the structure once. Focus on building.*
+**Garage** — *Small tools. Your data. Your browser.*
